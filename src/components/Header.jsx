@@ -1,15 +1,46 @@
-import NavBar from './NavBar'
+import { useState, useEffect } from "react";
+import Carrito from "./carrito";
+import Toggle from "./Toggle";
+import About from "./About";
 
-const Header = () => {
+const Header = ({ color }) => {
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpenToggle, setIsOpenToggle] = useState(false)
+  const [isOpenAbout, setIsOpenAbout] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const blackSection = document.querySelector(".black-section"); // Ajusta la clase según tu diseño
+      if (blackSection) {
+        const blackSectionPosition = blackSection.offsetTop;
+
+        if (window.scrollY >= blackSectionPosition - 50) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div>
+    <div className={`fixed w-full  transition-colors duration-300 ${isScrolled ? "text-white" : "text-black"
+      }`} style={{
+        background: isScrolled ? "transparent" : color
+      }}>
       <div
         className="flex items-center justify-between"
         style={{
           padding: '20px'
         }}
       >
-        <div>
+
+        <div onClick={() => setIsOpenToggle(true)} className="cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -25,14 +56,17 @@ const Header = () => {
             />
           </svg>
         </div>
+        <Toggle isOpen={isOpenToggle} setIsOpen={setIsOpenToggle} />
         <div>
           <p className="text-2xl font-bold">ZAYCA</p>
         </div>
         <div className="flex items-center justify-center gap-3">
-          <p className="text-sm font-medium">About</p>
-          <p className="text-sm font-medium">FAQs</p>
+          <p className="text-sm font-medium cursor-pointer" onClick={() => setIsOpenAbout(true)}>About</p>
+          <About isOpen={isOpenAbout} setIsOpen={setIsOpenAbout} />
+          <p className="text-sm font-medium cursor-pointer">FAQs</p>
           <div
-            className="border rounded-full border-neutral-200"
+            onClick={() => setIsOpen(true)}
+            className="border rounded-full border-neutral-200 cursor-pointer"
             style={{
               padding: '8px'
             }}
@@ -54,9 +88,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div>
-        <NavBar />
-      </div>
+      <Carrito isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   )
 }

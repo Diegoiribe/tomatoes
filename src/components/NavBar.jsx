@@ -1,8 +1,8 @@
 const NavBar = () => {
   return (
-    <nav className="flex justify-between px-5">
+    <nav className="flex justify-between px-5 pt-[72px] ">
       {/* Categories */}
-      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-27">
+      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-40">
         <p className="text-sm font-semibold text-[#B5B5B5]">Categories</p>
         <div>
           <svg
@@ -22,7 +22,7 @@ const NavBar = () => {
         </div>
       </div>
       {/* New Product */}
-      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-11">
+      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-24">
         <p className="text-sm font-semibold text-[#B5B5B5]">New Product</p>
         <div>
           <svg
@@ -42,7 +42,7 @@ const NavBar = () => {
         </div>
       </div>
       {/* Search */}
-      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-36">
+      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-64">
         <input
           type="text"
           placeholder="Search..."
@@ -67,23 +67,21 @@ const NavBar = () => {
       </div>
 
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">Men</p>
+        <p className="font-medium text-[#2f2f2f]">Men</p>
       </div>
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">Woman</p>
+        <p className="font-medium text-[#2f2f2f]">Woman</p>
       </div>
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">Children</p>
+        <p className="font-medium text-[#2f2f2f]">Children</p>
       </div>
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">Dress</p>
+        <p className="font-medium text-[#2f2f2f]">Dress</p>
       </div>
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">Offerts</p>
+        <p className="font-medium text-[#2f2f2f]">Offert</p>
       </div>
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-semibold text-[#2f2f2f]">San Valentin</p>
-      </div>
+
     </nav>
   )
 }

@@ -1,7 +1,7 @@
 const Banner = () => {
   return (
     <div
-      className="h-[82vh] m-5 rounded-3xl px-10 py-14"
+      className="h-[89vh] mb-5 mx-5 rounded-3xl px-10 py-14 overflow-hidden mt-[72px]"
       style={{
         backgroundImage:
           "url('https://static.massimodutti.net/assets/public/3411/d4f0/7b774b1b840a/5600b054c1a6/wnaturaltonedesktop6/wnaturaltonedesktop6.jpg?ts=1738760905703&w=1440')",
@@ -9,9 +9,9 @@ const Banner = () => {
         backgroundPosition: 'center' // Opcional para centrar la imagen
       }}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <div className="max-w-md ">
-          <p className="text-white text-7xl font-extralight">
+          <p className="text-white text-7xl font-extralight overflow-hidden">
             We are digital meets fashions
           </p>
           <div className="flex gap-2 mt-5">
