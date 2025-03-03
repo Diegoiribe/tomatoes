@@ -81,7 +81,6 @@ const NavBar = () => {
       <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
         <p className="font-medium text-[#2f2f2f]">Offert</p>
       </div>
-
     </nav>
   )
 }

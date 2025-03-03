@@ -1,45 +1,48 @@
-import { useState, useEffect } from "react";
-import Carrito from "./carrito";
-import Toggle from "./Toggle";
-import About from "./About";
+import { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import Carrito from './carrito'
+import Toggle from './Toggle'
+import About from './About'
 
 const Header = ({ color }) => {
-
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
   const [isOpenToggle, setIsOpenToggle] = useState(false)
   const [isOpenAbout, setIsOpenAbout] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const blackSection = document.querySelector(".black-section"); // Ajusta la clase según tu diseño
+      const blackSection = document.querySelector('.black-section') // Ajusta la clase según tu diseño
       if (blackSection) {
-        const blackSectionPosition = blackSection.offsetTop;
+        const blackSectionPosition = blackSection.offsetTop
 
         if (window.scrollY >= blackSectionPosition - 50) {
-          setIsScrolled(true);
+          setIsScrolled(true)
         } else {
-          setIsScrolled(false);
+          setIsScrolled(false)
         }
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <div className={`fixed w-full  transition-colors duration-300 ${isScrolled ? "text-white" : "text-black"
-      }`} style={{
-        background: isScrolled ? "transparent" : color
-      }}>
+    <div
+      className={`fixed w-full  transition-colors duration-300 ${
+        isScrolled ? 'text-white' : 'text-black'
+      }`}
+      style={{
+        background: isScrolled ? 'transparent' : color
+      }}
+    >
       <div
         className="flex items-center justify-between"
         style={{
           padding: '20px'
         }}
       >
-
         <div onClick={() => setIsOpenToggle(true)} className="cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,12 +64,17 @@ const Header = ({ color }) => {
           <p className="text-2xl font-bold">ZAYCA</p>
         </div>
         <div className="flex items-center justify-center gap-3">
-          <p className="text-sm font-medium cursor-pointer" onClick={() => setIsOpenAbout(true)}>About</p>
+          <p
+            className="text-sm font-medium cursor-pointer"
+            onClick={() => setIsOpenAbout(true)}
+          >
+            About
+          </p>
           <About isOpen={isOpenAbout} setIsOpen={setIsOpenAbout} />
           <p className="text-sm font-medium cursor-pointer">FAQs</p>
           <div
             onClick={() => setIsOpen(true)}
-            className="border rounded-full border-neutral-200 cursor-pointer"
+            className="border rounded-full cursor-pointer border-neutral-200"
             style={{
               padding: '8px'
             }}
@@ -91,6 +99,10 @@ const Header = ({ color }) => {
       <Carrito isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   )
+}
+
+Header.propTypes = {
+  color: PropTypes.string.isRequired // Asegura que `color` es un string obligatorio
 }
 
 export default Header

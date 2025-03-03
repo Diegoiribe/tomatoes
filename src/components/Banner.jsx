@@ -11,7 +11,7 @@ const Banner = () => {
     >
       <div className="flex justify-between ">
         <div className="max-w-md ">
-          <p className="text-white text-7xl font-extralight overflow-hidden">
+          <p className="overflow-hidden text-white text-7xl font-extralight">
             We are digital meets fashions
           </p>
           <div className="flex gap-2 mt-5">
