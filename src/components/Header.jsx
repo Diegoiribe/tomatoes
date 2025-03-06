@@ -30,9 +30,8 @@ const Header = ({ color }) => {
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-300 ${
-        isScrolled ? 'text-white' : 'text-black'
-      }`}
+      className={`fixed w-full transition-colors duration-300 ${isScrolled ? 'text-white' : 'text-black'
+        }`}
       style={{
         background: isScrolled ? 'transparent' : color
       }}

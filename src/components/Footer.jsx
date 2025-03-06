@@ -1,6 +1,13 @@
-const Footer = () => {
+import { useState } from "react";
+
+const Footer = ({ color = "white", bg = "black" }) => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="flex w-full px-20 py-40 text-white bg-black black-section">
+    <div className="flex w-full px-20 py-40  black-section"
+      style={{
+        backgroundColor: bg,
+        color: color
+      }}>
       <div className="w-1/3">
         <p className="overflow-hidden font-bold text-7xl">ZAYCA</p>
       </div>
@@ -12,7 +19,15 @@ const Footer = () => {
               Suscríbase a nuestra Newsletter y le enviaremos información sobre
               novedades y tendencias.
             </p>
-            <div className="border-[1px] border-white rounded-xl  py-2 inline-flex items-center justify-center cursor-pointer hover:bg-white hover:text-black text-sm uppercase max-w-44">
+            <div className="border-[1px]  rounded-xl  py-2 inline-flex items-center justify-center cursor-pointer  text-sm uppercase max-w-44"
+              style={{
+                borderColor: color,
+                backgroundColor: isHovered ? color : bg,
+                color: isHovered ? bg : color,
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
               Suscríbete
             </div>
           </div>
@@ -23,7 +38,7 @@ const Footer = () => {
               <p className="text-sm">Tiktok</p>
               <p className="text-sm">X</p>
               <p className="text-sm">Facebook</p>
-              <p className="text-sm">Youtube</p>
+
             </div>
           </div>
         </div>

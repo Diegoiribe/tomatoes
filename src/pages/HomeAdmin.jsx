@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import AdminDashboard from '../components/AdminDashboard/AdminDashboard'
 import AdminHeader from '../components/AdminHeader'
 import AdminMenu from '../components/AdminMenu'
+import Footer from '../components/Footer'
 
 const HomeAdmin = () => {
+  const [category, setCategory] = useState(1)
+
   return (
     <div>
       <AdminHeader />
       <div className="flex">
-        <AdminMenu />
-        <AdminDashboard />
+        <AdminMenu category={category} setCategory={setCategory} />
+        <AdminDashboard category={category} />
       </div>
+      
     </div>
   )
 }
