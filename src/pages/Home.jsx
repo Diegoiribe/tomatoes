@@ -4,7 +4,7 @@ import Header from '../components/Header'
 
 const Home = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header color="white" />
       <Banner />
       <Footer />

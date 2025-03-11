@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const Footer = ({ color = "white", bg = "black" }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const Footer = ({ color = 'white', bg = 'black' }) => {
+  const [isHovered, setIsHovered] = useState(false)
   return (
-    <div className="flex w-full px-20 py-40  black-section"
+    <div
+      className="flex w-full h-screen px-20 py-40 black-section"
       style={{
         backgroundColor: bg,
         color: color
-      }}>
+      }}
+    >
       <div className="w-1/3">
         <p className="overflow-hidden font-bold text-7xl">ZAYCA</p>
       </div>
@@ -19,11 +22,12 @@ const Footer = ({ color = "white", bg = "black" }) => {
               Suscríbase a nuestra Newsletter y le enviaremos información sobre
               novedades y tendencias.
             </p>
-            <div className="border-[1px]  rounded-xl  py-2 inline-flex items-center justify-center cursor-pointer  text-sm uppercase max-w-44"
+            <div
+              className="border-[1px]  rounded-xl  py-2 inline-flex items-center justify-center cursor-pointer  text-sm uppercase max-w-44"
               style={{
                 borderColor: color,
                 backgroundColor: isHovered ? color : bg,
-                color: isHovered ? bg : color,
+                color: isHovered ? bg : color
               }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -38,7 +42,6 @@ const Footer = ({ color = "white", bg = "black" }) => {
               <p className="text-sm">Tiktok</p>
               <p className="text-sm">X</p>
               <p className="text-sm">Facebook</p>
-
             </div>
           </div>
         </div>
@@ -119,6 +122,11 @@ const Footer = ({ color = "white", bg = "black" }) => {
       </div>
     </div>
   )
+}
+
+Footer.propTypes = {
+  color: PropTypes.string.isRequired, // Asegura que `color` es un string obligatorio
+  bg: PropTypes.string.isRequired
 }
 
 export default Footer

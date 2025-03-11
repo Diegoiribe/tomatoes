@@ -27,7 +27,7 @@ const data = {
 
 const HeatMap = () => {
   const mapRef = useRef(null)
-  const [viewport, setViewport] = useState({
+  const [viewport] = useState({
     latitude: 23.6345,
     longitude: -102.5528,
     zoom: 3.15,

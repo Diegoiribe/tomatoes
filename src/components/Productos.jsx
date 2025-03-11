@@ -24,7 +24,7 @@ const Productos = () => {
               width: '100%' // Corregido: usas item.w aquí
             }}
           >
-            <div className="flex items-start justify-end w-full h-full p-5 opacity-0 hover:bg-black/10 hover:opacity-100">
+            <div className="flex items-start justify-end w-full h-full p-5 opacity-0 hover:bg-black/10 hover:opacity-100 rounded-2xl">
               <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-2xl cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

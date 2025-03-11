@@ -6,17 +6,16 @@ import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 
 const Catalogo = () => {
-    return (
-        <div>
-            <Header color="white" />
-            <NavBar />
-            <Options />
-            <Eslogan />
-            <Productos />
-            <Footer />
-        </div>
-
-    )
+  return (
+    <div>
+      <Header color="white" />
+      <NavBar />
+      <Options />
+      <Eslogan />
+      <Productos />
+      <Footer />
+    </div>
+  )
 }
 
 export default Catalogo

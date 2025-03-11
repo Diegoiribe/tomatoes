@@ -14,8 +14,7 @@ const ProductosV3 = () => {
           }}
         >
           <div
-            key={item.url} // Es una buena práctica agregar una key única
-            className="rounded-2xl h-[27rem]"
+            className="rounded-2xl h-[60vh]"
             style={{
               backgroundImage: `url(${item.photoModel})`, // Corregido: usas item.url aquí
               backgroundSize: 'cover',

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Cuidados = ({ isOpen, setIsOpen }) => {
   return (
@@ -167,6 +167,11 @@ const Cuidados = ({ isOpen, setIsOpen }) => {
       </div>
     </>
   )
+}
+
+Cuidados.propTypes = {
+  isOpen: PropTypes.bool.isRequired, // Asegura que `color` es un string obligatorio
+  setIsOpen: PropTypes.bool.isRequired
 }
 
 export default Cuidados
