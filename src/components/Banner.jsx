@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Banner = () => {
   return (
     <div
@@ -80,10 +82,10 @@ const Banner = () => {
       </div>
       <div className="flex flex-col items-center justify-center mt-20">
         <div className="flex items-center mb-5">
-          <div className="px-10 py-3 text-sm font-bold bg-white rounded-full">
+          <Link to={"/cat"} className="px-10 py-3 text-sm font-bold bg-white rounded-full">
             Start shopping
-          </div>
-          <div>
+          </Link>
+          <Link to={"/cat"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -98,9 +100,9 @@ const Banner = () => {
                 d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
               />
             </svg>
-          </div>
+          </Link>
         </div>
-        <p className="font-thin text-white">Top collections</p>
+        <Link to={"/cat"} className="font-thin text-white">Top collections</Link>
       </div>
     </div>
   )

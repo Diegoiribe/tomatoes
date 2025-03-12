@@ -1,44 +1,82 @@
-const NavBar = () => {
+import { useState } from "react";
+
+const NavBar = ({ filtros, setFiltros }) => {
+  const handleChange = (event) => {
+    setFiltros((prev) => ({
+      ...prev,
+      categoria: event.target.value, // Se actualiza correctamente la categoría
+    }));
+  };
+
   return (
-    <nav className="flex justify-between px-5 pt-[72px] ">
+    <nav className="flex justify-between px-5 pt-[90px] ">
       {/* Categories */}
-      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-40">
-        <p className="text-sm font-semibold text-[#B5B5B5]">Categories</p>
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="6"
-            stroke="currentColor"
-            className="size-3 text-[#565656]"
+      <div className="flex gap-5 items-center">
+        <div className="flex items-center py-2 px-3 bg-[#F9F9F9] rounded-full">
+          <select
+            id="options"
+            className="block appearance-none w-40  text-[#B5B5B5]  pr-8  leading-tight focus:outline-none cursor-pointer font-semibold text-sm"
+            value={filtros.categoria}
+            onChange={handleChange}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-          </svg>
+
+            <option value="" disabled>
+              Categories
+            </option>
+            <option value="Jersey">Jersey</option>
+            <option value="Dress">Dress</option>
+            <option value="Pants">Pants</option>
+          </select>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="6"
+              stroke="currentColor"
+              className="size-3 text-[#565656]"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
-      {/* New Product */}
-      <div className="bg-[#F9F9F9] px-3 py-2 inline-flex rounded-full items-center justify-center gap-24">
-        <p className="text-sm font-semibold text-[#B5B5B5]">New Product</p>
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="6"
-            stroke="currentColor"
-            className="size-3 text-[#565656]"
+
+        {/* New Product */}
+        <div className="flex items-center py-2 px-3 bg-[#F9F9F9] rounded-full">
+          <select
+            id="options"
+            className="block appearance-none w-52  text-[#B5B5B5]  pr-8  leading-tight focus:outline-none cursor-pointer font-semibold text-sm"
+
+            onChange={handleChange}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-          </svg>
+
+            <option value="" disabled>
+              New product
+            </option>
+            <option value="opcion1">2021 Season</option>
+            <option value="opcion2">Winter Season</option>
+            <option value="opcion3">Summer Season</option>
+          </select>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="6"
+              stroke="currentColor"
+              className="size-3 text-[#565656]"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       {/* Search */}
@@ -66,21 +104,6 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-medium text-[#2f2f2f]">Men</p>
-      </div>
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-medium text-[#2f2f2f]">Woman</p>
-      </div>
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-medium text-[#2f2f2f]">Children</p>
-      </div>
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-medium text-[#2f2f2f]">Dress</p>
-      </div>
-      <div className="inline-flex items-center justify-center px-3 py-1 border-2 rounded-full border-[#F9F9F9]">
-        <p className="font-medium text-[#2f2f2f]">Offert</p>
-      </div>
     </nav>
   )
 }

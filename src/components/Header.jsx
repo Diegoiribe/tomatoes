@@ -70,7 +70,7 @@ const Header = ({ color }) => {
             About
           </p>
           <About isOpen={isOpenAbout} setIsOpen={setIsOpenAbout} />
-          <p className="text-sm font-medium cursor-pointer">FAQs</p>
+
           <div
             onClick={() => setIsOpen(true)}
             className="border rounded-full cursor-pointer border-neutral-200"
