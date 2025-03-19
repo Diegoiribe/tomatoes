@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom'
 import { ProductoPrincipal } from '../data/db'
 import PropTypes from 'prop-types' // Importa el módulo de PropTypes
 
-const ProductosV2 = ({ width }) => {
+const ProductosV2 = ({ width, agregarAlCarrito }) => {
   const producto = ProductoPrincipal
 
   return (
-    <div className="flex flex-wrap justify-between w-full py-5">
+    <div className="flex flex-wrap w-full gap-3 py-5">
       {producto.map((item) => (
-        <div
+        <Link
+          to={`/producto/${item.id}`} // Corregido: usas item.id aquí
           key={item.id}
           className="cursor-pointer"
           style={{
@@ -23,8 +25,15 @@ const ProductosV2 = ({ width }) => {
               width: '100%' // Corregido: usas item.w aquí
             }}
           >
-            <div className="flex items-end w-full h-full p-5 opacity-0 justify-star hover:bg-black/10 hover:opacity-100">
-              <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-2xl cursor-pointer">
+            <div className="flex items-end w-full h-full p-5 opacity-0 justify-star hover:bg-black/10 rounded-2xl hover:opacity-100">
+              <div
+                onClick={(e) => {
+                  e.preventDefault() // Evita que actúe como un enlace
+                  e.stopPropagation() // Evita que el evento se propague al contenedor padre
+                  agregarAlCarrito(item) // Agrega el producto al carrito correctamente
+                }}
+                className="flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-2xl cursor-pointer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -51,7 +60,7 @@ const ProductosV2 = ({ width }) => {
               })}
             </p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )

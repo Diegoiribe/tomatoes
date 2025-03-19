@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import Carrito from './carrito'
 import Toggle from './Toggle'
 import About from './About'
+import { Link } from 'react-router-dom'
 
-const Header = ({ color }) => {
+const Header = ({ color, productoCarrito, eliminarDelCarrito }) => {
+  const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpenToggle, setIsOpenToggle] = useState(false)
   const [isOpenAbout, setIsOpenAbout] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,8 +31,9 @@ const Header = ({ color }) => {
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-300 ${isScrolled ? 'text-white' : 'text-black'
-        }`}
+      className={`fixed w-full transition-colors duration-300 z-40 ${
+        isScrolled ? 'text-white' : 'text-black'
+      }`}
       style={{
         background: isScrolled ? 'transparent' : color
       }}
@@ -59,9 +61,9 @@ const Header = ({ color }) => {
           </svg>
         </div>
         <Toggle isOpen={isOpenToggle} setIsOpen={setIsOpenToggle} />
-        <div>
+        <Link to="/">
           <p className="text-2xl font-bold">ZAYCA</p>
-        </div>
+        </Link>
         <div className="flex items-center justify-center gap-3">
           <p
             className="text-sm font-medium cursor-pointer"
@@ -95,7 +97,12 @@ const Header = ({ color }) => {
           </div>
         </div>
       </div>
-      <Carrito isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Carrito
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        productoCarrito={productoCarrito}
+        eliminarDelCarrito={eliminarDelCarrito}
+      />
     </div>
   )
 }

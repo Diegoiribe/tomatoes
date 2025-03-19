@@ -13,6 +13,7 @@
     "@react-google-maps/api": "^2.20.6",
     "@tailwindcss/vite": "^4.0.6",
     "axios": "^1.8.2",
+    "fuse.js": "^7.1.0",
     "leaflet": "^1.9.4",
     "leaflet.heat": "^0.2.0",
     "maplibre-gl": "^4.7.1",

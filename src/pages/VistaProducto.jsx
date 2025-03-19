@@ -2,15 +2,52 @@ import Cuidados from '../components/Cuidados'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ProductosV2 from '../components/ProductosV2'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ProductoVista } from '../data/db'
 import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-const VistaProducto = () => {
+const VistaProducto = ({
+  agregarAlCarrito,
+  productoCarrito,
+  eliminarDelCarrito
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const { id } = useParams()
 
   const producto = ProductoVista
+
+  const [tallaSeleccionada, setTallaSeleccionada] = useState(null)
+  const [colorSeleccionado, setColorSeleccionado] = useState(null)
+  const galeriaRef = useRef(null) // 🔹 Referencia al contenedor de imágenes
+  const { pathname } = useLocation() // 🔹 Detecta el cambio de ruta
+
+  useEffect(() => {
+    setColorSeleccionado(null)
+    setTallaSeleccionada(null)
+    if (galeriaRef.current) {
+      galeriaRef.current.scrollLeft = 0 // 🔄 Restablece el scroll horizontal
+      galeriaRef.current.scrollTop = 0 // 🔄 Restablece el scroll vertical (si aplica)
+    }
+  }, [pathname])
+
+  const manejarAgregarAlCarrito = () => {
+    if (!tallaSeleccionada || !colorSeleccionado) {
+      alert(
+        'Por favor selecciona una talla y un color antes de añadir al carrito'
+      )
+      return
+    }
+
+    const productoConDetalles = {
+      ...producto.find((p) => p.id == id),
+      size: tallaSeleccionada,
+      color: colorSeleccionado
+    }
+
+    agregarAlCarrito(productoConDetalles)
+    console.log(productoConDetalles)
+  }
 
   const getTailwindDarkColor = (color) => {
     // Mapa de colores permitidos en Tailwind
@@ -47,9 +84,16 @@ const VistaProducto = () => {
 
   return (
     <div className="w-full h-full ">
-      <Header color="transparent" />
+      <Header
+        color="transparent"
+        productoCarrito={productoCarrito}
+        eliminarDelCarrito={eliminarDelCarrito}
+      />
       <div className=" w-full h-[100vh] flex mb-20">
-        <div className="w-1/2 h-full overflow-auto rounded-br-2xl">
+        <div
+          ref={galeriaRef}
+          className="w-1/2 h-full overflow-auto rounded-br-2xl"
+        >
           {producto
             .filter((p) => p.id == id) // Filtra el producto con el ID específico (devuelve un array)
             .map((item) => (
@@ -107,23 +151,40 @@ const VistaProducto = () => {
                     {item.colors.map((color, index) => (
                       <div
                         key={`${item.id}-${index}`} // Clave única combinando el ID del producto y el índice
-                        className={`border-2 rounded-md border-[#F9F9F9] w-5 h-5 cursor-pointer ${getTailwindDarkColor(
+                        className={`border-2  w-5 h-5 border-[#F9F9F9] cursor-pointer ${getTailwindDarkColor(
                           color
-                        )}`}
+                        )} ${
+                          colorSeleccionado === color
+                            ? 'rounded-full '
+                            : 'rounded-md'
+                        }`}
+                        onClick={() => setColorSeleccionado(color)}
                       ></div>
                     ))}
                   </div>
                   <div className="flex items-center justify-center w-full gap-5">
-                    <div className="cursor-pointer font-extralight">XS</div>
-                    <div className="cursor-pointer font-extralight">S</div>
-                    <div className="cursor-pointer font-extralight">M</div>
-                    <div className="cursor-pointer font-extralight">L</div>
+                    {item.sizes.map((size, index) => (
+                      <div
+                        key={index}
+                        className={` w-8 rounded-md text-center py-1 ${
+                          tallaSeleccionada === size
+                            ? 'font-medium'
+                            : 'font-extralight'
+                        } cursor-pointer`}
+                        onClick={() => setTallaSeleccionada(size)}
+                      >
+                        {size}
+                      </div>
+                    ))}
                   </div>
                   <p className="text-xs font-medium text-center text-neutral-500">
                     La modelo lleva la talla M y mide 178 cm.
                   </p>
                   <div className="flex flex-col gap-7">
-                    <div className="flex items-center justify-center px-5 py-2 bg-black cursor-pointer rounded-xl">
+                    <div
+                      className="flex items-center justify-center px-5 py-2 bg-black cursor-pointer rounded-xl"
+                      onClick={manejarAgregarAlCarrito}
+                    >
                       <p className="text-sm font-medium text-white">
                         Añadir al carrito
                       </p>
@@ -202,7 +263,7 @@ const VistaProducto = () => {
         TE PUEDE INTERESAR
       </p>
       <div className="px-5">
-        <ProductosV2 width="16.4%" />
+        <ProductosV2 width="15.99%" agregarAlCarrito={agregarAlCarrito} />
       </div>
       <Footer />
     </div>
