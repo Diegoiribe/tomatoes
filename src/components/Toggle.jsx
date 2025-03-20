@@ -25,9 +25,9 @@ const Toggle = ({ isOpen, setIsOpen }) => {
                 >
                     {/* Botón de cerrar */}
                     <div className="p-10 flex items-center gap-5">
-                        <p className="text-4xl font-bold overflow-hidden">ZAYCA</p>
+                        <p className="text-4xl font-bold overflow-hidden text-black">ZAYCA</p>
                         <div className="flex justify-end items-center p-4">
-                            <button onClick={() => setIsOpen(false)} className="cursor-pointer">
+                            <button onClick={() => setIsOpen(false)} className="cursor-pointer text-black">
                                 <svg
                                     width="18"
                                     viewBox="0 0 24 24"
@@ -48,10 +48,10 @@ const Toggle = ({ isOpen, setIsOpen }) => {
                     {/* Contenido de la sidebar */}
                     <div className=" flex flex-col gap-3 p-10 mt-24">
                         <p className="text-sm text-neutral-500 ">Switch to</p>
-                        <Link to="/" className="text-base cursor-pointer" >Home</Link>
-                        <Link to="/cat" className="text-base cursor-pointer">Catalogo</Link>
-                        <Link to="/carrito" className="text-base cursor-pointer">Carrito</Link>
-                        <Link to="/pedido" className="text-base cursor-pointer">Rastrear pedido</Link>
+                        <Link to="/" className="text-base cursor-pointer text-black" >Home</Link>
+                        <Link to="/cat" className="text-base cursor-pointer text-black">Catalogo</Link>
+                        <Link to="/carrito" className="text-base cursor-pointer text-black">Carrito</Link>
+                        <Link to="/pedido" className="text-base cursor-pointer text-black">Rastrear pedido</Link>
                     </div>
                 </div>
             )}

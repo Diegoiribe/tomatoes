@@ -20,13 +20,13 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
   })
 
   return (
-    <div className="flex flex-wrap w-full gap-23 p-5 pt-10 min-h-[90vh]">
+    <div className="flex flex-wrap sm:justify-center md:justify-normal mb-23 w-full gap-23 p-5 pt-10 min-h-[90vh]">
       {productosFiltrados.length > 0 ? (
         productosFiltrados.map((item) => (
           <Link
+            className='md:w-[20%] sm:w-[90%]'
             to={`/producto/${item.id}`}
             key={item.id}
-            style={{ width: '20%' }}
           >
             <div
               className="rounded-2xl h-[24rem] cursor-pointer"

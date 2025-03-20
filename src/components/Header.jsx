@@ -5,7 +5,7 @@ import Toggle from './Toggle'
 import About from './About'
 import { Link } from 'react-router-dom'
 
-const Header = ({ color, productoCarrito, eliminarDelCarrito }) => {
+const Header = ({ color, productoCarrito, eliminarDelCarrito, fontColor = "black" }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpenToggle, setIsOpenToggle] = useState(false)
@@ -31,11 +31,10 @@ const Header = ({ color, productoCarrito, eliminarDelCarrito }) => {
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-300 z-40 ${
-        isScrolled ? 'text-white' : 'text-black'
-      }`}
+      className={`fixed w-full transition-colors duration-300 z-40 ${isScrolled ? 'text-white' : fontColor
+        }`}
       style={{
-        background: isScrolled ? 'transparent' : color
+        background: isScrolled ? 'black' : color
       }}
     >
       <div
@@ -66,7 +65,7 @@ const Header = ({ color, productoCarrito, eliminarDelCarrito }) => {
         </Link>
         <div className="flex items-center justify-center gap-3">
           <p
-            className="text-sm font-medium cursor-pointer"
+            className="text-sm font-medium cursor-pointer sm:hidden md:flex"
             onClick={() => setIsOpenAbout(true)}
           >
             About
@@ -86,7 +85,7 @@ const Header = ({ color, productoCarrito, eliminarDelCarrito }) => {
               viewBox="0 0 24 24"
               strokeWidth="3"
               stroke="currentColor"
-              className=" size-3 text-neutral-500"
+              className=" size-3 "
             >
               <path
                 strokeLinecap="round"
