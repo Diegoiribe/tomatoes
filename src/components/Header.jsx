@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Carrito from './carrito'
+import Carrito from './Carrito'
 import Toggle from './Toggle'
 import About from './About'
 import { Link } from 'react-router-dom'
