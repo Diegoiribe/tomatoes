@@ -2,20 +2,18 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ProductosV2 from '../components/ProductosV2'
 import ProductosV3 from '../components/ProductosV3'
-import { ProductoCarrito } from '../data/db'
+
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
-  const [width, setWidth] = useState("")
+  const [width, setWidth] = useState('')
   const productos = productoCarrito
 
   useEffect(() => {
-
-    const screenWidth = window.innerWidth;
-    if (screenWidth > 765) return setWidth("19.2%");      // tablets o pantallas medianas
-    return setWidth("75%");                           // pantallas grandes
-
+    const screenWidth = window.innerWidth
+    if (screenWidth > 765) return setWidth('19.2%') // tablets o pantallas medianas
+    return setWidth('75%') // pantallas grandes
   }, [])
 
   const handleBuyClick = async () => {
@@ -94,7 +92,7 @@ const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
             productoCarrito={productoCarrito}
           />
         </div>
-        <p className=" py-4 text-xs font-medium uppercase ">
+        <p className="py-4 text-xs font-medium uppercase ">
           TE PUEDE INTERESAR
         </p>
         <ProductosV2 width={width} agregarAlCarrito={agregarAlCarrito} />

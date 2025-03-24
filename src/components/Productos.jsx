@@ -24,7 +24,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
       {productosFiltrados.length > 0 ? (
         productosFiltrados.map((item) => (
           <Link
-            className='md:w-[20%] sm:w-[90%]'
+            className="md:w-[20%] sm:w-[90%]"
             to={`/producto/${item.id}`}
             key={item.id}
           >
@@ -37,9 +37,9 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
                 width: '100%'
               }}
             >
-              <div className="flex items-start justify-end w-full h-full p-5 opacity-0 hover:bg-black/10 hover:opacity-100 rounded-2xl">
+              <div className="flex items-start justify-end w-full h-full p-5 sm:opacity-100 md:opacity-0 md:hover:bg-black/10 md:hover:opacity-100 rounded-2xl">
                 <button
-                  className="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-2xl cursor-pointer"
+                  className="flex items-center justify-center rounded-full shadow-2xl cursor-pointer sm:bg-black/10 md:bg-white sm:w-8 sm:h-8 md:w-16 md:h-16"
                   onClick={(e) => {
                     e.preventDefault() // Evita que actúe como un enlace
                     e.stopPropagation() // Evita que el evento se propague al contenedor padre
@@ -52,7 +52,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
                     viewBox="0 0 24 24"
                     strokeWidth="2"
                     stroke="currentColor"
-                    className="size-6"
+                    className="sm:size-4 md:size-6"
                   >
                     <path
                       strokeLinecap="round"

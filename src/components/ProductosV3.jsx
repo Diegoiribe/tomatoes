@@ -5,10 +5,7 @@ const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
     <div className="flex flex-wrap w-full gap-5 py-5">
       {productoCarrito.length > 0 ? (
         productoCarrito.map((item) => (
-          <div
-            key={item.id}
-            className="cursor-pointer md:w-[32%] sm:w-full"
-          >
+          <div key={item.id} className="cursor-pointer md:w-[32%] sm:w-full">
             <div
               className="rounded-2xl h-[60vh]"
               style={{
@@ -18,7 +15,7 @@ const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
                 width: '100%'
               }}
             >
-              <div className="flex items-start justify-end w-full h-full p-3 opacity-0 hover:bg-black/10 hover:opacity-100 rounded-2xl">
+              <div className="flex items-start justify-end w-full h-full p-3 sm:opacity-100 md:opacity-0 hover:bg-black/10 md:hover:opacity-100 rounded-2xl">
                 <div
                   className="flex items-center justify-center shadow-2xl cursor-pointer"
                   onClick={() => eliminarDelCarrito(item.id)}

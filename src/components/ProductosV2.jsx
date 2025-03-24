@@ -3,13 +3,10 @@ import { ProductoPrincipal } from '../data/db'
 import PropTypes from 'prop-types' // Importa el módulo de PropTypes
 
 const ProductosV2 = ({ width, agregarAlCarrito }) => {
-
-
-
   const producto = ProductoPrincipal
 
   return (
-    <div className="flex sm:justify-around md:justify-normal flex-wrap w-full gap-3 py-5 mb-20">
+    <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-normal">
       {producto.map((item) => (
         <Link
           to={`/producto/${item.id}`} // Corregido: usas item.id aquí
@@ -28,14 +25,14 @@ const ProductosV2 = ({ width, agregarAlCarrito }) => {
               width: '100%' // Corregido: usas item.w aquí
             }}
           >
-            <div className="flex items-end w-full h-full p-5 opacity-0 justify-star hover:bg-black/10 rounded-2xl hover:opacity-100">
+            <div className="flex items-end w-full h-full p-5 sm:opacity-100 md:opacity-0 justify-star md:hover:bg-black/10 rounded-2xl md:hover:opacity-100">
               <div
                 onClick={(e) => {
                   e.preventDefault() // Evita que actúe como un enlace
                   e.stopPropagation() // Evita que el evento se propague al contenedor padre
                   agregarAlCarrito(item) // Agrega el producto al carrito correctamente
                 }}
-                className="flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-2xl cursor-pointer"
+                className="flex items-center justify-center w-8 h-8 rounded-full shadow-2xl cursor-pointer sm:bg-black/10 md:bg-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
