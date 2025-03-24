@@ -2,11 +2,15 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ProductosV2 from '../components/ProductosV2'
 import ProductosV3 from '../components/ProductosV3'
-
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
+const Carrito = ({
+  agregarAlCarrito,
+  productoCarrito,
+  eliminarDelCarrito,
+  actualizarCantidad
+}) => {
   const [width, setWidth] = useState('')
   const productos = productoCarrito
 
@@ -90,6 +94,7 @@ const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
           <ProductosV3
             eliminarDelCarrito={eliminarDelCarrito}
             productoCarrito={productoCarrito}
+            actualizarCantidad={actualizarCantidad}
           />
         </div>
         <p className="py-4 text-xs font-medium uppercase ">

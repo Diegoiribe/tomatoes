@@ -38,7 +38,7 @@ const Carrito = ({ isOpen, setIsOpen, eliminarDelCarrito }) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-[450px] bg-white shadow-lg transform ${
+        className={`fixed top-0 right-0 z-50 h-full sm:w-full md:w-[450px] text-black bg-white shadow-lg transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-300 overflow-y-auto`}
         style={{ pointerEvents: 'auto' }}

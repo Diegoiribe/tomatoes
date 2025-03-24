@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
-
-const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
+const ProductosV3 = ({
+  productoCarrito,
+  eliminarDelCarrito,
+  actualizarCantidad
+}) => {
   return (
     <div className="flex flex-wrap w-full gap-5 py-5">
       {productoCarrito.length > 0 ? (
@@ -58,6 +60,7 @@ const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
                   strokeWidth="1"
                   stroke="currentColor"
                   className="cursor-pointer size-3"
+                  onClick={() => actualizarCantidad(item.id, 'restar')}
                 >
                   <path
                     strokeLinecap="round"
@@ -76,6 +79,7 @@ const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
                   strokeWidth="1"
                   stroke="currentColor"
                   className="cursor-pointer size-3"
+                  onClick={() => actualizarCantidad(item.id, 'sumar')}
                 >
                   <path
                     strokeLinecap="round"

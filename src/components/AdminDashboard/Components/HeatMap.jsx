@@ -30,7 +30,7 @@ const HeatMap = () => {
   const [viewport] = useState({
     latitude: 23.6345,
     longitude: -102.5528,
-    zoom: 3.15,
+    zoom: 0.5,
     projection: 'globe'
   })
 
@@ -51,7 +51,7 @@ const HeatMap = () => {
         initialViewState={viewport}
         mapStyle="mapbox://styles/mapbox/streets-v11" // 🔹 Cambia estilos aquí
         mapboxAccessToken={MAPBOX_TOKEN}
-        style={{ height: '450px', overflow: 'hidden' }}
+        style={{ height: '350px', overflow: 'hidden' }}
       >
         {/* 🔹 Capa de puntos de calor */}
         <Source id="heatmap" type="geojson" data={data}>

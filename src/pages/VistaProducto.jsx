@@ -21,15 +21,12 @@ const VistaProducto = ({
   const [colorSeleccionado, setColorSeleccionado] = useState(null)
   const galeriaRef = useRef(null) // 🔹 Referencia al contenedor de imágenes
   const { pathname } = useLocation() // 🔹 Detecta el cambio de ruta
-  const [width, setWidth] = useState("")
-
+  const [width, setWidth] = useState('')
 
   useEffect(() => {
-
-    const screenWidth = window.innerWidth;
-    if (screenWidth > 765) return setWidth("15.95%");      // tablets o pantallas medianas
-    return setWidth("70%");                           // pantallas grandes
-
+    const screenWidth = window.innerWidth
+    if (screenWidth > 765) return setWidth('15.95%') // tablets o pantallas medianas
+    return setWidth('70%') // pantallas grandes
   }, [])
   useEffect(() => {
     setColorSeleccionado(null)
@@ -38,7 +35,6 @@ const VistaProducto = ({
       galeriaRef.current.scrollLeft = 0 // 🔄 Restablece el scroll horizontal
       galeriaRef.current.scrollTop = 0 // 🔄 Restablece el scroll vertical (si aplica)
     }
-
   }, [pathname])
 
   const manejarAgregarAlCarrito = () => {
@@ -156,17 +152,20 @@ const VistaProducto = ({
                       })}
                     </p>
                   </div>
-                  <p className="text-xs uppercase sm:hidden md:flex">{item.description}</p>
+                  <p className="text-xs uppercase sm:hidden md:flex">
+                    {item.description}
+                  </p>
                   <div className="flex items-center justify-center w-full gap-5">
                     {item.colors.map((color, index) => (
                       <div
                         key={`${item.id}-${index}`} // Clave única combinando el ID del producto y el índice
                         className={`border-2  w-5 h-5 border-[#F9F9F9] cursor-pointer ${getTailwindDarkColor(
                           color
-                        )} ${colorSeleccionado === color
-                          ? 'rounded-full '
-                          : 'rounded-md'
-                          }`}
+                        )} ${
+                          colorSeleccionado === color
+                            ? 'rounded-full '
+                            : 'rounded-md'
+                        }`}
                         onClick={() => setColorSeleccionado(color)}
                       ></div>
                     ))}
@@ -175,10 +174,11 @@ const VistaProducto = ({
                     {item.sizes.map((size, index) => (
                       <div
                         key={index}
-                        className={` w-8 rounded-md text-center py-1 ${tallaSeleccionada === size
-                          ? 'font-medium'
-                          : 'font-extralight'
-                          } cursor-pointer`}
+                        className={` w-8 rounded-md text-center py-1 ${
+                          tallaSeleccionada === size
+                            ? 'font-medium'
+                            : 'font-extralight'
+                        } cursor-pointer`}
                         onClick={() => setTallaSeleccionada(size)}
                       >
                         {size}

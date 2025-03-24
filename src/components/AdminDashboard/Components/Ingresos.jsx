@@ -1,5 +1,6 @@
 import Footer from '../../Footer'
 import HeatMap from './HeatMap'
+import Graph from './Graph'
 
 const Ingresos = () => {
   return (
@@ -7,62 +8,26 @@ const Ingresos = () => {
       <div className="flex flex-col items-center h-screen overflow-hidden">
         <div className="flex justify-between w-full gap-8">
           <div className=" h-full w-[75%]">
-            <div className="w-full overflow-hidden rounded-2xl">
-              <HeatMap />
+            <div className="w-full overflow-hidden rounded-2xl flex items-center justify-center bg-[#F3F9D1] h-[450px]">
+              <Graph />
             </div>
             <div className="flex flex-col gap-4 mt-3">
               <h1 className="py-1 overflow-hidden text-6xl ">
-                Heat map presentation
+                Weekly Sales Chart
               </h1>
               <p className="text-sm text-neutral-500">Feb 2, 2025</p>
             </div>
           </div>
 
-          <div className="w-[25%]  mr-8 flex flex-col gap-20 mb-8 ">
+          <div className="w-[25%] mr-8 flex flex-col gap-15 mb-8 ">
             <div className="w-full ">
-              <div className="flex flex-col w-full gap-1 h-72 rounded-2xl">
-                <div className="flex gap-3 px-2 py-1 rounded-full">
-                  <p className="w-1/5 overflow-hidden text-white">Item</p>
-                  <div className="flex w-4/5 gap">
-                    <p className="w-1/3 overflow-hidden text-sm">Name</p>
-                    <p className="w-1/3 overflow-hidden text-sm">Sale</p>
-                    <p className="w-1/3 overflow-hidden text-sm">Amount</p>
-                  </div>
-                </div>
-                <div className="flex items-center w-full gap-1 h-1/3">
-                  <div className="w-1/5 text-3xl rounded-xl" style={{}}>
-                    🇲🇽
-                  </div>
-                  <div className="flex w-4/5 gap-4">
-                    <p className="w-1/3 text-xs">Mexico</p>
-                    <p className="w-1/3 text-xs">$10,000</p>
-                    <p className="w-1/3 text-xs">10</p>
-                  </div>
-                </div>
-                <div className="flex items-center w-full gap-1 h-1/3">
-                  <div className="w-1/5 text-3xl rounded-xl" style={{}}>
-                    🇲🇽
-                  </div>
-                  <div className="flex w-4/5 gap-4">
-                    <p className="w-1/3 text-xs">Mexico</p>
-                    <p className="w-1/3 text-xs">$10,000</p>
-                    <p className="w-1/3 text-xs">10</p>
-                  </div>
-                </div>
-                <div className="flex items-center w-full gap-1 h-1/3">
-                  <div className="w-1/5 text-3xl rounded-xl" style={{}}>
-                    🇲🇽
-                  </div>
-                  <div className="flex w-4/5 gap-4">
-                    <p className="w-1/3 text-xs">Mexico</p>
-                    <p className="w-1/3 text-xs">$10,000</p>
-                    <p className="w-1/3 text-xs">10</p>
-                  </div>
-                </div>
+              <div className="w-full overflow-hidden rounded-2xl">
+                <HeatMap />
               </div>
+
               <div className="flex flex-col gap-1 mt-2">
                 <h1 className="overflow-hidden font-medium ">
-                  Items most sold
+                  Heat map presentation
                 </h1>
                 <p className="text-sm text-neutral-500">Feb 2, 2025</p>
               </div>

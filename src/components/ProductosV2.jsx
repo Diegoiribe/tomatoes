@@ -6,7 +6,7 @@ const ProductosV2 = ({ width, agregarAlCarrito }) => {
   const producto = ProductoPrincipal
 
   return (
-    <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-normal">
+    <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-center">
       {producto.map((item) => (
         <Link
           to={`/producto/${item.id}`} // Corregido: usas item.id aquí

@@ -6,7 +6,7 @@ const Web = () => {
       <div className="h-screen">
         <div className="flex justify-between pr-10 mb-5 overflow-hidden">
           <p className="text-4xl font-semibold">Banner</p>
-          <div className="px-5 py-2 overflow-hidden text-sm text-white bg-black rounded-lg cursor-pointer">
+          <div className="flex items-center px-5 py-2 overflow-hidden text-sm text-white bg-black rounded-lg cursor-pointer">
             Cargar foto
           </div>
         </div>

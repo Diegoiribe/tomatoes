@@ -6,7 +6,7 @@ import Web from './Components/Web'
 
 const AdminDashboard = ({ category }) => {
   return (
-    <div className="w-full h-screen pt-[80px]">
+    <div className="w-full h-screen pt-[80px] overflow-x-hidden">
       {category === 1 && <Ingresos />}
       {category === 2 && <Sales />}
       {category === 3 && <Inventary />}

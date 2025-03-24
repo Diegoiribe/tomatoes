@@ -45,6 +45,25 @@ function App() {
   const eliminarDelCarrito = (id) => {
     setProductoCarrito((prev) => prev.filter((item) => item.id !== id))
   }
+
+  const actualizarCantidad = (id, operacion) => {
+    setProductoCarrito((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              count:
+                operacion === 'sumar'
+                  ? item.count + 1
+                  : item.count > 1
+                  ? item.count - 1
+                  : 1
+            }
+          : item
+      )
+    )
+  }
+
   return (
     <Router>
       <ScrollToTop />
@@ -77,6 +96,7 @@ function App() {
               productoCarrito={productoCarrito}
               agregarAlCarrito={agregarAlCarrito}
               eliminarDelCarrito={eliminarDelCarrito}
+              actualizarCantidad={actualizarCantidad}
             />
           }
         />
