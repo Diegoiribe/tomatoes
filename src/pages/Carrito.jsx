@@ -4,9 +4,19 @@ import ProductosV2 from '../components/ProductosV2'
 import ProductosV3 from '../components/ProductosV3'
 import { ProductoCarrito } from '../data/db'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
+  const [width, setWidth] = useState("")
   const productos = productoCarrito
+
+  useEffect(() => {
+
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 765) return setWidth("19.2%");      // tablets o pantallas medianas
+    return setWidth("75%");                           // pantallas grandes
+
+  }, [])
 
   const handleBuyClick = async () => {
     try {
@@ -54,7 +64,7 @@ const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
         productoCarrito={productoCarrito}
         eliminarDelCarrito={eliminarDelCarrito}
       />
-      <div className="fixed bottom-0 left-0 flex items-start justify-end w-full gap-10 pt-6 pb-4 bg-black shadow-2xl px-25">
+      <div className="fixed bottom-0 left-0 flex items-start justify-end w-full gap-10 pt-6 pb-4 bg-black shadow-2xl sm:px-10 md:px-25">
         <p className="text-sm text-white uppercase font-extralight">Total</p>
         <div>
           <p className="text-xs text-white uppercase font-extralight">
@@ -74,7 +84,7 @@ const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
           CONTINUAR
         </button>
       </div>
-      <div className="pt-[72px] px-25 ">
+      <div className="pt-[72px] sm:px-10 md:px-25 ">
         <p className="text-sm font-medium uppercase">
           Carrito [{productos.length}]
         </p>
@@ -84,7 +94,10 @@ const Carrito = ({ agregarAlCarrito, productoCarrito, eliminarDelCarrito }) => {
             productoCarrito={productoCarrito}
           />
         </div>
-        <ProductosV2 width="19.2%" agregarAlCarrito={agregarAlCarrito} />
+        <p className=" py-4 text-xs font-medium uppercase ">
+          TE PUEDE INTERESAR
+        </p>
+        <ProductosV2 width={width} agregarAlCarrito={agregarAlCarrito} />
       </div>
       <Footer />
     </div>

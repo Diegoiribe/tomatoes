@@ -3,10 +3,13 @@ import { ProductoPrincipal } from '../data/db'
 import PropTypes from 'prop-types' // Importa el módulo de PropTypes
 
 const ProductosV2 = ({ width, agregarAlCarrito }) => {
+
+
+
   const producto = ProductoPrincipal
 
   return (
-    <div className="flex flex-wrap w-full gap-3 py-5">
+    <div className="flex sm:justify-around md:justify-normal flex-wrap w-full gap-3 py-5 mb-20">
       {producto.map((item) => (
         <Link
           to={`/producto/${item.id}`} // Corregido: usas item.id aquí

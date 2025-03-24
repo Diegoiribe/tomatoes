@@ -7,10 +7,7 @@ const ProductosV3 = ({ productoCarrito, eliminarDelCarrito }) => {
         productoCarrito.map((item) => (
           <div
             key={item.id}
-            className="cursor-pointer"
-            style={{
-              width: '32%' // Corregido: usas item.w aquí
-            }}
+            className="cursor-pointer md:w-[32%] sm:w-full"
           >
             <div
               className="rounded-2xl h-[60vh]"

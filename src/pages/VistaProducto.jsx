@@ -21,7 +21,16 @@ const VistaProducto = ({
   const [colorSeleccionado, setColorSeleccionado] = useState(null)
   const galeriaRef = useRef(null) // 🔹 Referencia al contenedor de imágenes
   const { pathname } = useLocation() // 🔹 Detecta el cambio de ruta
+  const [width, setWidth] = useState("")
 
+
+  useEffect(() => {
+
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 765) return setWidth("15.95%");      // tablets o pantallas medianas
+    return setWidth("70%");                           // pantallas grandes
+
+  }, [])
   useEffect(() => {
     setColorSeleccionado(null)
     setTallaSeleccionada(null)
@@ -29,6 +38,7 @@ const VistaProducto = ({
       galeriaRef.current.scrollLeft = 0 // 🔄 Restablece el scroll horizontal
       galeriaRef.current.scrollTop = 0 // 🔄 Restablece el scroll vertical (si aplica)
     }
+
   }, [pathname])
 
   const manejarAgregarAlCarrito = () => {
@@ -89,10 +99,10 @@ const VistaProducto = ({
         productoCarrito={productoCarrito}
         eliminarDelCarrito={eliminarDelCarrito}
       />
-      <div className=" w-full h-[100vh] flex mb-20">
+      <div className=" w-full sm:h-full md:h-[100vh] flex sm:flex-col md:flex-row mb-20">
         <div
           ref={galeriaRef}
-          className="w-1/2 h-full overflow-auto rounded-br-2xl"
+          className="md:w-1/2 sm:w-full sm:h-[80vh] md:h-full overflow-auto sm:rounded-none md:rounded-br-2xl"
         >
           {producto
             .filter((p) => p.id == id) // Filtra el producto con el ID específico (devuelve un array)
@@ -101,7 +111,7 @@ const VistaProducto = ({
                 {item.photos.map((photo, index) => (
                   <div
                     key={`${item.id}-${index}`}
-                    className="w-full h-[120vh]"
+                    className="w-full sm:h-[90vh] md:h-[110vh]"
                     style={{
                       backgroundImage: `url(${photo})`,
                       backgroundSize: 'cover',
@@ -113,14 +123,14 @@ const VistaProducto = ({
             ))}
         </div>
 
-        <div className="flex justify-center w-1/2 pt-32 ">
+        <div className="flex justify-center sm:w-full md:w-1/2 sm:p-5 md:pt-32 ">
           {producto
             .filter((p) => p.id == id)
             .map((item) => (
               <div key={item.id}>
-                <div className="flex flex-col gap-11 max-w-[350px]">
+                <div className="flex flex-col gap-11 md:max-w-[350px]">
                   <div>
-                    <div className="flex gap-10">
+                    <div className="flex sm:justify-between md:justify-normal md:gap-10">
                       <p className="text-sm uppercase font-extralight">
                         {item.name}
                       </p>
@@ -146,18 +156,17 @@ const VistaProducto = ({
                       })}
                     </p>
                   </div>
-                  <p className="text-xs uppercase">{item.description}</p>
+                  <p className="text-xs uppercase sm:hidden md:flex">{item.description}</p>
                   <div className="flex items-center justify-center w-full gap-5">
                     {item.colors.map((color, index) => (
                       <div
                         key={`${item.id}-${index}`} // Clave única combinando el ID del producto y el índice
                         className={`border-2  w-5 h-5 border-[#F9F9F9] cursor-pointer ${getTailwindDarkColor(
                           color
-                        )} ${
-                          colorSeleccionado === color
-                            ? 'rounded-full '
-                            : 'rounded-md'
-                        }`}
+                        )} ${colorSeleccionado === color
+                          ? 'rounded-full '
+                          : 'rounded-md'
+                          }`}
                         onClick={() => setColorSeleccionado(color)}
                       ></div>
                     ))}
@@ -166,11 +175,10 @@ const VistaProducto = ({
                     {item.sizes.map((size, index) => (
                       <div
                         key={index}
-                        className={` w-8 rounded-md text-center py-1 ${
-                          tallaSeleccionada === size
-                            ? 'font-medium'
-                            : 'font-extralight'
-                        } cursor-pointer`}
+                        className={` w-8 rounded-md text-center py-1 ${tallaSeleccionada === size
+                          ? 'font-medium'
+                          : 'font-extralight'
+                          } cursor-pointer`}
                         onClick={() => setTallaSeleccionada(size)}
                       >
                         {size}
@@ -263,7 +271,7 @@ const VistaProducto = ({
         TE PUEDE INTERESAR
       </p>
       <div className="px-5">
-        <ProductosV2 width="15.99%" agregarAlCarrito={agregarAlCarrito} />
+        <ProductosV2 width={width} agregarAlCarrito={agregarAlCarrito} />
       </div>
       <Footer />
     </div>
