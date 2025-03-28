@@ -55,6 +55,7 @@ const NavBarActive = ({ filtros, setFiltros }) => {
             onChange={(e) =>
               setFiltros((prev) => ({ ...prev, categoria: e.target.value }))
             }
+            style={{ touchAction: 'manipulation' }}
           >
             <option value="" disabled>
               Categories
@@ -92,6 +93,7 @@ const NavBarActive = ({ filtros, setFiltros }) => {
           placeholder="What are you looking for?"
           value={filtros.busqueda}
           onChange={handleSearchChange}
+          style={{ touchAction: 'manipulation' }}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
