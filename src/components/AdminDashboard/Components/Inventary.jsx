@@ -1,15 +1,31 @@
 import Footer from '../../Footer'
 import { useState } from 'react'
 import InventaryModal from './InventaryModal'
+import { ProductoPrincipal } from '../../../data/db'
 const Inventary = ({ filtros, setFiltros }) => {
+  const [verMas, setVerMas] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const products = Array.from({ length: 8 }, (_, i) => i + 1)
+  const products = ProductoPrincipal
   const handleChange = (event) => {
     setFiltros((prev) => ({
       ...prev,
       categoria: event.target.value // Se actualiza correctamente la categoría
     }))
   }
+
+  const productosFiltrados = products.filter((p) => {
+    const matchCategoria =
+      !filtros.categoria || p.category === filtros.categoria
+    const matchBusqueda =
+      !filtros.busqueda ||
+      p.name.toLowerCase().includes(filtros.busqueda.toLowerCase())
+
+    return matchCategoria && matchBusqueda
+  })
+
+  const productosAMostrar = verMas
+    ? productosFiltrados
+    : productosFiltrados.slice(0, 8)
 
   return (
     <div className="flex flex-col items-center w-full pl-52">
@@ -45,6 +61,10 @@ const Inventary = ({ filtros, setFiltros }) => {
                 type="text"
                 className="w-full p-2 px-5 text-sm text-black rounded-full focus:outline-none bg-black/5"
                 placeholder="Buscar"
+                value={filtros.busqueda}
+                onChange={(e) =>
+                  setFiltros((prev) => ({ ...prev, busqueda: e.target.value }))
+                }
               />
               <div className="flex items-center gap-5">
                 <div className="flex items-center px-5 py-2 rounded-full border-neutral-300 bg-black/5">
@@ -81,8 +101,8 @@ const Inventary = ({ filtros, setFiltros }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center w-full gap-5 pr-10 ">
-            {products.map((item) => (
+          <div className="flex flex-wrap justify-center w-full gap-5 pr-10 mb-10">
+            {productosAMostrar.map((item) => (
               <div
                 key={item}
                 className="flex justify-between p-3 h-36 w-[45%] rounded-2xl hover:bg-black/5"
@@ -90,17 +110,20 @@ const Inventary = ({ filtros, setFiltros }) => {
                 <div
                   className="w-[25.5%] rounded-2xl mr-10"
                   style={{
-                    backgroundImage: `url('https://static.massimodutti.net/assets/public/10ee/5427/746947f1a696/866cb37a36b9/05679701567-o1/05679701567-o1.jpg?ts=1738592246881&w=1024')`, // Corregido: usas item.url aquí
+                    backgroundImage: `url(${item.photoPrimary})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 ></div>
                 <div className="flex flex-col justify-center gap-3 ">
                   <div className="">
-                    <p className="mb-1 text-xs truncate">
-                      ZAPATO TACON PUNTA REDONDA
+                    <p className="mb-1 text-xs truncate">{item.name}</p>
+                    <p className="text-xs uppercase">
+                      mex $
+                      {item.price.toLocaleString('en-US', {
+                        minimumFractionDigits: 2
+                      })}
                     </p>
-                    <p className="text-xs uppercase">mex $2,765</p>
                   </div>
                   <div className="flex gap-2 ">
                     <div className="flex flex-col items-center justify-center gap-2 ">
@@ -156,9 +179,14 @@ const Inventary = ({ filtros, setFiltros }) => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col items-center w-full mt-10 mb-20 cursor-pointer">
-            <p className="text-xs font-semibold">VER MAS</p>
-          </div>
+          {!verMas && products.length > 8 && (
+            <div
+              className="flex flex-col items-center w-full mb-20 cursor-pointer"
+              onClick={() => setVerMas(true)}
+            >
+              <p className="text-xs font-semibold">VER MÁS</p>
+            </div>
+          )}
         </>
       )}
 

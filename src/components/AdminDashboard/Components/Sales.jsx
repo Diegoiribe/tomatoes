@@ -3,6 +3,7 @@ import SalesModal from './SalesModal'
 import { useState } from 'react'
 
 const Sales = () => {
+  const [isList, setIsList] = useState(false)
   const sales = Array.from({ length: 8 }, (_, i) => i + 1)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -10,11 +11,15 @@ const Sales = () => {
     <div className="w-full pl-52 ">
       <div className="flex flex-col items-center w-full min-h-screen">
         {isOpen ? (
-          <div className="min-h-[80%] w-full flex items-top justify-center">
+          <div className="min-h-[80%] w-full flex items-top justify-center ">
             <SalesModal setIsOpen={setIsOpen} />
           </div>
         ) : (
-          <div className="flex flex-wrap justify-center w-full gap-5 pr-10">
+          <div
+            className={`flex flex-wrap w-full gap-5 pr-10 mb-15 ${
+              isList ? 'flex-col items-center' : 'flex-row justify-center'
+            }`}
+          >
             <div className="flex items-center justify-between w-full h-12 px-2 pr-10">
               <div className="flex gap-5">
                 <svg
@@ -24,6 +29,7 @@ const Sales = () => {
                   strokeWidth="1.5"
                   stroke="currentColor"
                   className="font-bold cursor-pointer size-6"
+                  onClick={() => setIsList(false)}
                 >
                   <path
                     strokeLinecap="round"
@@ -38,6 +44,7 @@ const Sales = () => {
                   strokeWidth="1.5"
                   stroke="currentColor"
                   className="font-bold cursor-pointer size-6"
+                  onClick={() => setIsList(true)}
                 >
                   <path
                     strokeLinecap="round"
@@ -79,7 +86,9 @@ const Sales = () => {
             </div>
             {sales.map((item) => (
               <div
-                className="w-[45%] flex justify-between h-36 gap-3 hover:bg-black/5 rounded-2xl p-3 cursor-pointer"
+                className={`flex justify-between h-36 gap-3 hover:bg-black/5 rounded-2xl p-3 cursor-pointer ${
+                  isList ? 'w-[65%]' : 'w-[45%]'
+                }`}
                 key={item}
                 onClick={() => setIsOpen(!isOpen)}
               >

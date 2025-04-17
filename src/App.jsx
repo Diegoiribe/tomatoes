@@ -7,6 +7,7 @@ import VistaProducto from './pages/VistaProducto'
 import Carrito from './pages/Carrito'
 import Register from './pages/Register'
 import HomeAdmin from './pages/HomeAdmin'
+import Landing from './pages/Landing'
 
 import { useEffect, useState } from 'react'
 
@@ -68,7 +69,8 @@ function App() {
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/zayca" element={<Home />} />
         <Route
           path="/cat"
           element={
