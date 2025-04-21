@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
-import { ProductoPrincipal } from '../data/db'
+import { Tienda } from '../data/db'
 
 const NavBarActive = ({ filtros, setFiltros }) => {
   const [categorias, setCategorias] = useState([]) // Guardará categorías únicas
@@ -10,10 +10,10 @@ const NavBarActive = ({ filtros, setFiltros }) => {
   // Extraer categorías y etiquetas únicas de la DB
   useEffect(() => {
     const uniqueCategories = [
-      ...new Set(ProductoPrincipal.map((producto) => producto.category))
+      ...new Set(Tienda[0].store.products.map((producto) => producto.category))
     ]
     const uniqueTags = [
-      ...new Set(ProductoPrincipal.flatMap((producto) => producto.etiquetas))
+      ...new Set(Tienda[0].store.products.flatMap((producto) => producto.tags))
     ]
 
     setCategorias(uniqueCategories)

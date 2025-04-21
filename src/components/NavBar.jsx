@@ -1,4 +1,20 @@
+import { Tienda } from "../data/db"
+import { useState, useEffect } from "react"
+
 const NavBar = ({ filtros, setFiltros }) => {
+  const [categorias, setCategorias] = useState([]) // Guardará categorías únicas
+
+  // Extraer categorías y etiquetas únicas de la DB
+  useEffect(() => {
+    const uniqueCategories = [
+      ...new Set(Tienda[0].store.products.map((producto) => producto.category))
+    ]
+
+    setCategorias(uniqueCategories)
+
+  }, [])
+
+
   const handleChange = (event) => {
     setFiltros((prev) => ({
       ...prev,
@@ -20,9 +36,11 @@ const NavBar = ({ filtros, setFiltros }) => {
             <option value="" disabled>
               Categories
             </option>
-            <option value="Jersey">Jersey</option>
-            <option value="Dress">Dress</option>
-            <option value="Pants">Pants</option>
+            {categorias.map((categoria) => (
+              <option key={categoria} value={categoria}>
+                {categoria}
+              </option>
+            ))}
           </select>
           <div>
             <svg

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ProductoPrincipal } from '../data/db'
+import { Tienda } from '../data/db'
 
 const Productos = ({ filtros, agregarAlCarrito }) => {
   // Filtrar productos por categoría y búsqueda
-  const productosFiltrados = ProductoPrincipal.filter((producto) => {
+  const productosFiltrados = Tienda[0].store.products.filter((producto) => {
     // Filtrar por categoría
     const coincideCategoria =
       !filtros.categoria || producto.category === filtros.categoria
@@ -12,7 +12,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
     const coincideBusqueda =
       !filtros.busqueda ||
       producto.name.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-      producto.etiquetas.some((etiqueta) =>
+      producto.tags.some((etiqueta) =>
         etiqueta.toLowerCase().includes(filtros.busqueda.toLowerCase())
       )
 
@@ -66,12 +66,12 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
             <p className="px-3 pt-3 text-xs uppercase">{item.name}</p>
             <div className="flex items-center justify-between px-2 py-1">
               <div className="flex gap-2">
-                {item.sizes.map((size, index) => (
+                {item.variants.map((item, index) => (
                   <div
                     key={`${item.id}-${index}`}
                     className="inline-flex items-center justify-center w-7 h-7 border-2 rounded-full border-[#F9F9F9] cursor-pointer hover:bg-black font-medium text-[#2f2f2f] text-[11px] hover:text-white"
                   >
-                    <p className="">{size}</p>
+                    <p className="">{item.size}</p>
                   </div>
                 ))}
               </div>

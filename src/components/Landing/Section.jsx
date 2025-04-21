@@ -1,19 +1,19 @@
 const Section = () => {
   return (
-    <div className="mx-28 mb-52">
+    <div className="sm:mx-5 md:mx-28 mb-52">
       <div className="flex mb-10">
-        <div className="max-w-[55%] flex flex-col gap-3">
-          <p className="text-5xl font-medium max-w-[450px]">
+        <div className="md:max-w-[55%] flex flex-col gap-3">
+          <p className="sm:text-2xl md:text-5xl font-medium max-w-[450px]">
             <span className="block">Your business.</span>
             <span className="block">Your space.</span>
             <span className="block">Ready in seconds.</span>
           </p>
-          <p className="text-lg font-light text-neutral-500">
+          <p className="sm:text-sm md:text-lg font-light text-neutral-500">
             No more complicated designs. With Spazyo, your store is ready in
             seconds — no coding, no monthly fees, just ready to sell.
           </p>
           <div className="flex items-center gap-5">
-            <p className="text-lg font-light text-blue-500">
+            <p className="sm:text-sm md:text-lg font-light text-blue-500">
               Step into our world.
             </p>
             <svg
@@ -34,7 +34,7 @@ const Section = () => {
         </div>
       </div>
       <video
-        className="rounded-3xl"
+        className="sm:rounded-xl shadow-2xl md:rounded-3xl"
         src="https://www.notion.com/front-static/pages/product/super-duper/organize/organize-screen-desktop.mp4"
       ></video>
     </div>

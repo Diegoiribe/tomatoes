@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const RegisterSteps = () => {
   const [step, setStep] = useState(1)
@@ -23,14 +24,15 @@ const RegisterSteps = () => {
   return (
     <div className="h-screen">
       <div className="flex items-start w-full">
-        <div
+        <Link
+          to={"/"}
           className="fixed text-2xl font-bold "
           style={{
             padding: '20px'
           }}
         >
-          Elephant Archives
-        </div>
+          SPAZYO
+        </Link>
       </div>
       <div className="flex items-center justify-center w-full h-full">
         <div className="mb-10">
@@ -60,7 +62,7 @@ const RegisterSteps = () => {
               >
                 Continue
               </button>
-              <div className="text-sm text-center cursor-pointer">Go back</div>
+              <Link to={"/"} className="text-sm text-center cursor-pointer">Go back</Link>
             </form>
           )}
 

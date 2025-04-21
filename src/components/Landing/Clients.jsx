@@ -47,25 +47,27 @@ const Clients = () => {
     } //VSC
   ]
 
+
+
   return (
-    <div className="flex flex-col items-center w-full pt-32 mb-64">
-      <p className="text-lg font-light">Clients & Partnerships</p>
-      <p className="mt-10 text-5xl font-light text-center">
+    <div className="flex flex-col items-center w-full sm:pt-16 md:pt-32 mb-64">
+      <p className="md:text-lg sm:text-sm font-light">Clients & Partnerships</p>
+      <p className="mt-10 sm:text-2xl md:text-5xl font-light text-center">
         <span className="font-medium text-blue-500">14,228,221</span> Al
         headshots created <br /> for
         <span className="font-medium text-amber-300"> 86,412</span> happy
         customers
       </p>
-      <div className="flex flex-wrap justify-center max-w-4xl mx-auto mt-10 gap-y-8">
+      <div className="flex flex-wrap justify-center sm:max-w-2xl md:max-w-4xl mx-auto mt-10 gap-y-8">
         {client.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-center w-1/2 px-4 sm:w-1/3 md:w-1/6"
+            className="flex items-center justify-center  px-4 sm:w-1/4 md:w-1/6"
           >
             <img
               src={item.url}
               alt={`Client ${item.id}`}
-              className="object-contain w-auto rounded-lg max-h-16"
+              className="object-contain w-auto rounded-lg sm:max-h-10 md:max-h-16"
             />
           </div>
         ))}

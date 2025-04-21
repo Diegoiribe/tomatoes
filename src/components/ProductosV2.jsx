@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
-import { ProductoPrincipal } from '../data/db'
+import { Tienda } from '../data/db'
 import PropTypes from 'prop-types' // Importa el módulo de PropTypes
 
 const ProductosV2 = ({ width, agregarAlCarrito }) => {
-  const producto = ProductoPrincipal
+  const information = Tienda[0]
 
   return (
     <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-center">
-      {producto.map((item) => (
+      {information.store.products.map((item) => (
         <Link
           to={`/producto/${item.id}`} // Corregido: usas item.id aquí
           key={item.id}

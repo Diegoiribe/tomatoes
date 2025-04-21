@@ -10,6 +10,7 @@ import HomeAdmin from './pages/HomeAdmin'
 import Landing from './pages/Landing'
 
 import { useEffect, useState } from 'react'
+import HomePhone from './pages/HomePhone'
 
 function App() {
   const [productoCarrito, setProductoCarrito] = useState([])
@@ -52,14 +53,14 @@ function App() {
       prev.map((item) =>
         item.id === id
           ? {
-              ...item,
-              count:
-                operacion === 'sumar'
-                  ? item.count + 1
-                  : item.count > 1
+            ...item,
+            count:
+              operacion === 'sumar'
+                ? item.count + 1
+                : item.count > 1
                   ? item.count - 1
                   : 1
-            }
+          }
           : item
       )
     )
@@ -102,6 +103,7 @@ function App() {
             />
           }
         />
+        <Route path="/shopphone" element={<HomePhone />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<HomeAdmin />} />
       </Routes>

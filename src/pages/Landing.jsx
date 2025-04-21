@@ -17,8 +17,8 @@ const Home = () => {
         setHeaderColor('white')
         setHeaderFont('text-black')
       } else {
-        setHeaderColor('')
-        setHeaderFont('text-white')
+        setHeaderColor('white')
+        setHeaderFont('text-black')
       }
     }
 
@@ -33,8 +33,10 @@ const Home = () => {
   return (
     <div className="w-full overflow-hidden">
       <Header color={headerColor} fontColor={headerFont} />
-      <Eslogan />
-      <Product />
+      <div className='sm:flex sm:flex-col sm:h-screen sm:justify-center md:h-auto'>
+        <Eslogan />
+        <Product />
+      </div>
       <Clients />
       <Banner />
       <Section />

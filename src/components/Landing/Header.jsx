@@ -26,9 +26,8 @@ const Header = ({ color, fontColor = 'black' }) => {
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-300 z-40 ${
-        isScrolled ? 'text-white ' : fontColor
-      }`}
+      className={`fixed w-full transition-colors duration-300 z-40 ${isScrolled ? 'text-white ' : fontColor
+        }`}
       style={{
         background: isScrolled ? 'black' : color
       }}
@@ -38,12 +37,12 @@ const Header = ({ color, fontColor = 'black' }) => {
           <p className="text-2xl font-bold">SPAZYO</p>
         </Link>
         <div className="flex items-center justify-center gap-1">
-          <div className="px-3 py-2 text-sm font-medium cursor-pointer bg-black/5 rounded-xl sm:hidden md:flex">
+          <div className="px-3 py-2 text-sm font-medium cursor-pointer bg-black/5 rounded-xl flex">
             Get try
           </div>
-          <div className="px-3 py-2 text-sm font-medium cursor-pointer rounded-xl sm:hidden md:flex">
-            Prices
-          </div>
+          <Link to={"/register"} className="px-3 py-2 text-sm font-medium cursor-pointer rounded-xl flex">
+            Log in
+          </Link>
         </div>
       </div>
     </div>
