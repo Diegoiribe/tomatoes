@@ -8,11 +8,20 @@ import Carrito from './pages/Carrito'
 import Register from './pages/Register'
 import HomeAdmin from './pages/HomeAdmin'
 import Landing from './pages/Landing'
-
+import axiosInstance from './api/axiosConfig'
 import { useEffect, useState } from 'react'
 import HomePhone from './pages/HomePhone'
+import Login from './pages/Login'
 
 function App() {
+  axiosInstance
+    .get('/store')
+    .then((response) => {
+      console.log('✅ Data recibida:', response.data)
+    })
+    .catch((error) => {
+      console.error('❌ Error al consumir la API:', error)
+    })
   const [productoCarrito, setProductoCarrito] = useState([])
 
   // 🔹 Cargar productos del carrito desde localStorage al iniciar la app
@@ -53,59 +62,87 @@ function App() {
       prev.map((item) =>
         item.id === id
           ? {
-            ...item,
-            count:
-              operacion === 'sumar'
-                ? item.count + 1
-                : item.count > 1
+              ...item,
+              count:
+                operacion === 'sumar'
+                  ? item.count + 1
+                  : item.count > 1
                   ? item.count - 1
                   : 1
-          }
+            }
           : item
       )
     )
   }
 
+  const getSubdomain = () => {
+    const host = window.location.hostname
+    const parts = host.split('.')
+
+    // zayca.spazyo → ["zayca", "spazyo"]
+    if (
+      parts.length === 2 &&
+      parts[0] !== 'spazyo' &&
+      parts[0] !== 'localhost'
+    ) {
+      return parts[0]
+    }
+
+    return null
+  }
+
+  const subdomain = getSubdomain()
+  console.log('🌐 Subdominio detectado:', subdomain)
+  console.log('🔍 Hostname real:', window.location.hostname)
+
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/zayca" element={<Home />} />
-        <Route
-          path="/cat"
-          element={
-            <Catalogo
-              productoCarrito={productoCarrito}
-              agregarAlCarrito={agregarAlCarrito}
-              eliminarDelCarrito={eliminarDelCarrito}
+        {subdomain === 'zayca' ? (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/cat"
+              element={
+                <Catalogo
+                  productoCarrito={productoCarrito}
+                  agregarAlCarrito={agregarAlCarrito}
+                  eliminarDelCarrito={eliminarDelCarrito}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/producto/:id"
-          element={
-            <VistaProducto
-              agregarAlCarrito={agregarAlCarrito}
-              productoCarrito={productoCarrito}
-              eliminarDelCarrito={eliminarDelCarrito}
+            <Route
+              path="/producto/:id"
+              element={
+                <VistaProducto
+                  agregarAlCarrito={agregarAlCarrito}
+                  productoCarrito={productoCarrito}
+                  eliminarDelCarrito={eliminarDelCarrito}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/carrito"
-          element={
-            <Carrito
-              productoCarrito={productoCarrito}
-              agregarAlCarrito={agregarAlCarrito}
-              eliminarDelCarrito={eliminarDelCarrito}
-              actualizarCantidad={actualizarCantidad}
+            <Route
+              path="/carrito"
+              element={
+                <Carrito
+                  productoCarrito={productoCarrito}
+                  agregarAlCarrito={agregarAlCarrito}
+                  eliminarDelCarrito={eliminarDelCarrito}
+                  actualizarCantidad={actualizarCantidad}
+                />
+              }
             />
-          }
-        />
-        <Route path="/shopphone" element={<HomePhone />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<HomeAdmin />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Landing />} />
+            <Route path="/shopphone" element={<HomePhone />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<HomeAdmin />} />
+          </>
+        )}
       </Routes>
     </Router>
   )

@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom'
 import { Tienda } from '../data/db'
+import { getData } from '../api/http'
+import { useEffect, useState } from 'react'
 
 const Productos = ({ filtros, agregarAlCarrito }) => {
+  // Estado para almacenar los productos de la tienda
+  const [isTienda, setIsTienda] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getData('/products')
+        console.log('Data fetched:', data)
+        setIsTienda(data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  console.log('isTienda:', isTienda)
+
   // Filtrar productos por categoría y búsqueda
-  const productosFiltrados = Tienda[0].store.products.filter((producto) => {
+  const productosFiltrados = isTienda.filter((producto) => {
     // Filtrar por categoría
     const coincideCategoria =
       !filtros.categoria || producto.category === filtros.categoria
@@ -20,7 +39,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
   })
 
   return (
-    <div className="flex flex-wrap sm:justify-center md:justify-normal mb-23 w-full gap-23 p-5 pt-10 min-h-[90vh]">
+    <div className="flex flex-wrap ∫ justify-center mb-23 w-full gap-23 p-5 pt-10 min-h-[90vh]">
       {productosFiltrados.length > 0 ? (
         productosFiltrados.map((item) => (
           <Link

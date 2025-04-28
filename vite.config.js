@@ -9,5 +9,10 @@ export default defineConfig({
     alias: {
       'mapbox-gl': 'mapbox-gl/dist/mapbox-gl.js'
     }
+  },
+  server: {
+    host: true, // permite cualquier IP
+    port: 5173,
+    allowedHosts: ['zayca.spazyo', 'spazyo'] // aquí añades tus dominios personalizados
   }
 })

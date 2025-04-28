@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const RegisterSteps = () => {
+const Login = () => {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     email: '',
@@ -35,10 +35,14 @@ const RegisterSteps = () => {
         </Link>
       </div>
       <div className="flex items-center justify-center w-full h-full">
-        <div className="mb-10">
-          <h1 className="mx-2 text-4xl font-light text-center">
-            Create an account
-          </h1>
+        <div className="mb-10 min-w-74">
+          {step === 3 ? (
+            <h1 className="mx-2 font-medium text-center text-7xl animate-scale">
+              Welcome
+            </h1>
+          ) : (
+            <h1 className="mx-2 text-4xl font-light text-center">Welcome</h1>
+          )}
 
           {/* Step 1 */}
           {step === 1 && (
@@ -92,7 +96,7 @@ const RegisterSteps = () => {
                 className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
                 placeholder="Password"
               />
-              <div className="flex flex-col gap-2 p-3 border rounded-sm border-neutral-300">
+              <div className="flex flex-col gap-2 p-3 border rounded-sm border-neutral-300 ">
                 <p className="text-sm text-neutral-500">
                   Your password must contain:
                 </p>
@@ -119,60 +123,6 @@ const RegisterSteps = () => {
               </div>
             </form>
           )}
-
-          {/* Step 3 */}
-          {step === 3 && (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-5">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
-                placeholder="Name"
-              />
-              <input
-                type="text"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                required
-                className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
-                placeholder="Country"
-              />
-              <input
-                type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
-                className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
-                placeholder="State"
-              />
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
-                className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
-                placeholder="City"
-              />
-              <button
-                className="py-3 text-sm font-medium text-center text-white bg-black border cursor-pointer rounded-xl"
-                type="submit"
-              >
-                Continue
-              </button>
-              <div
-                className="text-sm text-center cursor-pointer"
-                onClick={() => setStep(2)}
-              >
-                Go back
-              </div>
-            </form>
-          )}
         </div>
       </div>
       <div className="flex items-end justify-center w-full">
@@ -190,4 +140,4 @@ const RegisterSteps = () => {
   )
 }
 
-export default RegisterSteps
+export default Login

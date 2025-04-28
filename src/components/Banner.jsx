@@ -1,19 +1,18 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 const Banner = () => {
   return (
     <div
-      className="sm:h-[100vh] md:h-[89vh] md:mb-5 md:mx-5 md:rounded-3xl px-10 py-14 overflow-hidden md:mt-[72px]"
+      className="sm:h-[100vh] md:h-[89vh] md:mb-5 md:mx-5 md:rounded-3xl px-10 py-14 overflow-hidden md:mt-[72px] sm:bg-center md:bg-top"
       style={{
         // backgroundImage:
         //   "url('https://static.massimodutti.net/assets/public/3411/d4f0/7b774b1b840a/5600b054c1a6/wnaturaltonedesktop6/wnaturaltonedesktop6.jpg?ts=1738760905703&w=1440')",
         backgroundImage:
-          "url('https://static.massimodutti.net/assets/public/027a/67b4/1c9948369fa1/cf64af40fa01/wbanoapp3/wbanoapp3.jpg?ts=1741715570688&w=850')",
-        backgroundSize: 'cover', // Opcional para que la imagen cubra todo el fondo
-        backgroundPosition: 'center' // Opcional para centrar la imagen
+          "url('https://static.massimodutti.net/assets/public/027a/67b4/1c9948369fa1/cf64af40fa01/wbanoapp3/wbanoapp3.jpg?ts=1741715570688&w=1440')",
+        backgroundSize: 'cover' // Opcional para que la imagen cubra todo el fondo
       }}
     >
-      <div className="sm:hidden md:flex justify-between ">
+      <div className="justify-between sm:hidden md:flex ">
         <div className="max-w-md ">
           <p className="overflow-hidden text-white text-7xl font-extralight">
             We are digital meets fashions
@@ -77,17 +76,20 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div className="sm:hidden md:flex  justify-end mt-20">
+      <div className="justify-end mt-20 sm:hidden md:flex">
         <p className="font-thin text-white max-w-44">
           Transformin into stylisn y functional places
         </p>
       </div>
       <div className="flex flex-col items-center justify-center md:mt-20 sm:mt-96">
         <div className="flex items-center mb-5">
-          <Link to={"/cat"} className="px-10 py-3 text-sm font-bold bg-white rounded-full">
+          <Link
+            to={'/cat'}
+            className="px-10 py-3 text-sm font-bold bg-white rounded-full"
+          >
             Start shopping
           </Link>
-          <Link className="sm:hidden md:block" to={"/cat"}>
+          <Link className="sm:hidden md:block" to={'/cat'}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -104,7 +106,9 @@ const Banner = () => {
             </svg>
           </Link>
         </div>
-        <Link to={"/cat"} className="font-thin text-white">Top collections</Link>
+        <Link to={'/cat'} className="font-thin text-white">
+          Top collections
+        </Link>
       </div>
     </div>
   )

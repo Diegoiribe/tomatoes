@@ -1,13 +1,26 @@
 import { Link } from 'react-router-dom'
-import { Tienda } from '../data/db'
 import PropTypes from 'prop-types' // Importa el módulo de PropTypes
+import { useEffect, useState } from 'react'
+import { getData } from '../api/http'
 
 const ProductosV2 = ({ width, agregarAlCarrito }) => {
-  const information = Tienda[0]
+  const [Tienda, setTienda] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getData('/products')
+        console.log('Data fetched:', data)
+        setTienda(data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+    fetchData()
+  }, [])
 
   return (
     <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-center">
-      {information.store.products.map((item) => (
+      {Tienda.map((item) => (
         <Link
           to={`/producto/${item.id}`} // Corregido: usas item.id aquí
           key={item.id}

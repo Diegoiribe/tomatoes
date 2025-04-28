@@ -1,20 +1,9 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import Toggle from '../Toggle'
-
-import { Link } from 'react-router-dom'
-
-const Header = ({
-  color,
-  productoCarrito,
-  eliminarDelCarrito,
-  fontColor = 'black'
-}) => {
-  const [isOpen, setIsOpen] = useState(false)
+const Header = ({ color, fontColor = 'black' }) => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isOpenToggle, setIsOpenToggle] = useState(false)
-  const [isOpenAbout, setIsOpenAbout] = useState(false)
+  const [isName, setName] = useState('zayca')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,40 +25,52 @@ const Header = ({
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-300 z-40 ${
+      className={` w-full transition-colors duration-300 z-40 ${
         isScrolled ? 'text-white' : fontColor
       }`}
       style={{
         background: isScrolled ? 'black' : color
       }}
     >
-      <div className="flex items-center justify-between px-20 py-5">
-        <div className="flex items-center gap-5">
-          <div onClick={() => setIsOpenToggle(true)} className="cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
-              />
-            </svg>
-          </div>
-          <Toggle isOpen={isOpenToggle} setIsOpen={setIsOpenToggle} />
-          <Link to="/">
-            <p className="text-2xl font-bold">SHOPPHONE</p>
-          </Link>
+      <div
+        className="flex items-center justify-between mr-5 ml-52"
+        style={{
+          padding: '20px'
+        }}
+      >
+        <div className="cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
+            />
+          </svg>
+        </div>
+
+        <div className="flex items-center justify-center ">
+          <input
+            type="text"
+            placeholder="Name"
+            value={isName}
+            onChange={(e) => setName(e.target.value)}
+            className="text-2xl font-bold text-center focus:outline-none"
+          />
         </div>
         <div className="flex items-center justify-center gap-3">
+          <p className="text-sm font-medium cursor-pointer sm:hidden md:flex">
+            About
+          </p>
+
           <div
-            onClick={() => setIsOpen(true)}
-            className="rounded-full cursor-pointer "
+            className="border rounded-full cursor-pointer border-neutral-200"
             style={{
               padding: '8px'
             }}
@@ -78,9 +79,9 @@ const Header = ({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth="1"
+              strokeWidth="3"
               stroke="currentColor"
-              className=" size-6"
+              className=" size-3"
             >
               <path
                 strokeLinecap="round"
@@ -96,7 +97,8 @@ const Header = ({
 }
 
 Header.propTypes = {
-  color: PropTypes.string.isRequired // Asegura que `color` es un string obligatorio
+  color: PropTypes.string.isRequired, // Asegura que `color` es un string obligatorio
+  fontColor: PropTypes.string // Asegura que `fontColor` es un string opcional
 }
 
 export default Header

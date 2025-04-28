@@ -2,7 +2,7 @@ import Ingresos from './Components/Ingresos'
 import Inventary from './Components/Inventary'
 import Sales from './Components/Sales'
 import PropTypes from 'prop-types'
-import Web from './Components/Web'
+import Web from './AdminMain/index'
 
 const AdminDashboard = ({ category, setFiltros, filtros }) => {
   return (
