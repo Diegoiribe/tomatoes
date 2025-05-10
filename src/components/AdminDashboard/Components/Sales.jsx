@@ -1,128 +1,219 @@
-import Footer from '../../Footer'
-import SalesModal from './SalesModal'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import Footer from '../../Landing/Footer'
 
 const Sales = () => {
-  const [isList, setIsList] = useState(false)
-  const sales = Array.from({ length: 8 }, (_, i) => i + 1)
-  const [isOpen, setIsOpen] = useState(false)
+  const arr = Array.from({ length: 10 }, (_, i) => i + 1)
+  const scrollRef = useRef(null)
+  const [open, setOpen] = useState(false)
+  const orders = Array.from({ length: 10 }, (_, i) => i + 1)
 
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({
+      left: -window.innerWidth * 0.4,
+      behavior: 'smooth'
+    })
+  }
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({
+      left: window.innerWidth * 0.4,
+      behavior: 'smooth'
+    })
+  }
   return (
-    <div className="w-full pl-52 ">
-      <div className="flex flex-col items-center w-full min-h-screen">
-        {isOpen ? (
-          <div className="min-h-[80%] w-full flex items-top justify-center ">
-            <SalesModal setIsOpen={setIsOpen} />
-          </div>
-        ) : (
-          <div
-            className={`flex flex-wrap w-full gap-5 pr-10 mb-15 ${
-              isList ? 'flex-col items-center' : 'flex-row justify-center'
-            }`}
-          >
-            <div className="flex items-center justify-between w-full h-12 px-2 pr-10">
-              <div className="flex gap-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="font-bold cursor-pointer size-6"
-                  onClick={() => setIsList(false)}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="font-bold cursor-pointer size-6"
-                  onClick={() => setIsList(true)}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                  />
-                </svg>
-              </div>
-              <div className="flex gap-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="cursor-pointer size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="cursor-pointer size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </div>
-            </div>
-            {sales.map((item) => (
-              <div
-                className={`flex justify-between h-36 gap-3 hover:bg-black/5 rounded-2xl p-3 cursor-pointer ${
-                  isList ? 'w-[65%]' : 'w-[45%]'
-                }`}
-                key={item}
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                <div
-                  className="w-[25%] rounded-2xl"
-                  style={{
-                    backgroundImage: `url('https://static.massimodutti.net/assets/public/10ee/5427/746947f1a696/866cb37a36b9/05679701567-o1/05679701567-o1.jpg?ts=1738592246881&w=1024')`, // Corregido: usas item.url aquí
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                ></div>
-                <div className=" w-[60%] flex flex-col justify-around py-1">
-                  <div className="flex justify-between w-full">
-                    <p className="text-xs">ORD:789569955</p>
-                    <p className="text-xs text-green-500">Status</p>
-                  </div>
-                  <div>
-                    <p className="mb-1 text-xs">ZAPATO TACON PUNTA REDONDA</p>
-                  </div>
+    <div className="mt-20 pl-52">
+      <div className="mb-50">
+        <p className="-mb-10 text-lg font-light">[10]</p>
+        <div>
+          {orders.map((item, index) => (
+            <div key={index} className="mt-26 ">
+              <div className="flex items-center justify-between pr-10">
+                <p className="text-2xl">Sergio Iribe</p>
 
-                  <div className="flex items-center w-full gap-2">
-                    <div className="w-4 h-4 bg-black rounded-md"></div>
-                    <p className="text-xs">Black</p>
-                  </div>
-                  <div className="flex w-full gap-10">
-                    <p className="text-xs">Cantidad: 1</p>
-                    <p className="text-xs">Talla: S</p>
-                  </div>
-                  <p className="w-full text-xs text-end">MXN $2,495</p>
+                <div className="flex items-center gap-2">
+                  <p className="mt-1 text-xs font-medium text-neutral-400">
+                    Tue 6 May 2025
+                  </p>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-green-600 size-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+
+              <div className="flex justify-between w-full pr-10 mt-3 ">
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    Country
+                  </p>
+                  <p className="text-sm font-light">Mexico</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    State
+                  </p>
+                  <p className="text-sm font-light">Sinaloa</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    City
+                  </p>
+                  <p className="text-sm font-light">Culiacan</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    Address
+                  </p>
+                  <p className="text-sm font-light">Sens 2640, MonteCarlo</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    Postal Code
+                  </p>
+                  <p className="text-sm font-light">80054</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    Phone Number
+                  </p>
+                  <p className="text-sm font-light">+52 66-74-50-70-62</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-neutral-500">
+                    Email Address
+                  </p>
+                  <p className="text-sm font-light">sergio@hotmail.com</p>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="cursor-pointer size-6"
+                  onClick={() => setOpen(!open)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </div>
+              {open && (
+                <div>
+                  <div
+                    className="flex gap-5 p-10 overflow-x-hidden scroll-smooth "
+                    ref={scrollRef}
+                  >
+                    {arr.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="relative cursor-pointer rounded-2xl group"
+                        >
+                          <div
+                            className="w-56 transition-all duration-300 bg-top bg-cover h-74 rounded-2xl"
+                            style={{
+                              backgroundImage: `url(https://static.massimodutti.net/assets/public/a78c/1493/32674bfe95e3/c35c634607ac/05679701567-o6/05679701567-o6.jpg?ts=1738679506740&w=1024)`
+                            }}
+                          />
+                          <div className="absolute top-0 left-0 w-full h-full p-5 transition-opacity duration-300 opacity-0 bg-neutral-100 rounded-xl group-hover:opacity-100">
+                            <div className="flex flex-col items-center justify-between h-full">
+                              <div>
+                                <p className="text-[10px] font-medium text-neutral-500">
+                                  Name
+                                </p>
+                                <p className="text-lg font-light text-center ">
+                                  Jersey punto cuello polo 100% lino
+                                </p>
+                              </div>
+                              <div className="flex justify-center gap-5 ">
+                                <div>
+                                  <p className="text-[10px] font-medium text-neutral-500">
+                                    Color
+                                  </p>
+                                  <p className="text-lg font-light">Black</p>
+                                </div>
+                                <div>
+                                  <p className="text-[10px] font-medium text-neutral-500">
+                                    Size
+                                  </p>
+                                  <p className="text-lg font-light">M</p>
+                                </div>
+                                <div>
+                                  <p className="text-[10px] font-medium text-neutral-500">
+                                    Count
+                                  </p>
+                                  <p className="text-lg font-light">5</p>
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-[10px] font-medium text-neutral-500">
+                                  Price
+                                </p>
+                                <p className="text-lg font-light">
+                                  MXN $2,650.00
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <div className="flex justify-between px-10">
+                    <div className="flex gap-5 ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="cursor-pointer size-6"
+                        onClick={scrollLeft}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 19.5 8.25 12l7.5-7.5"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="cursor-pointer size-6"
+                        onClick={scrollRight}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </div>
+                    <div className="flex gap-3">
+                      <p className="text-lg font-light">TOTAL: </p>
+                      <p className="text-lg font-light">MXN $13,256.00</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <Footer bg={'#f1f1f1'} color={'black'} />
     </div>

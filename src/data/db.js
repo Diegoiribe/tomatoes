@@ -485,31 +485,6 @@ const Tienda = [
       paymentDetails: 'paypal: sergio.iribe@gmail.com',
       categories: ['Calzado', 'Ropa'],
       products: [
-        // {
-        //   id: 1,
-        //   name: 'Tenis Urban Flow',
-        //   description:
-        //     'Tenis deportivos con suela de goma y diseño moderno. Perfectos para correr o uso casual.',
-        //   footer: 'Incluye garantía de 6 meses por defectos de fábrica',
-        //   photoPrimary:
-        //     'https://example.com/images/tenis-urban-flow-principal.jpg',
-        //   photoModel: 'https://example.com/images/tenis-urban-flow-modelo.jpg',
-        //   photos: [
-        //     'https://example.com/images/tenis1.jpg',
-        //     'https://example.com/images/tenis2.jpg',
-        //     'https://example.com/images/tenis3.jpg'
-        //   ],
-        //   price: 899.5,
-        //   variants: [
-        //     { color: 'Blanco', size: '26', stock: 5 },
-        //     { color: 'Azul Marino', size: '28', stock: 2 },
-        //     { color: 'Blanco', size: '25', stock: 5 },
-        //     { color: 'Negro', size: '27', stock: 5 }
-        //   ],
-        //   tags: ['tenis', 'deportivos', 'casuales', 'urbano'],
-        //   category: 'Calzado'
-        // },
-
         {
           id: '1',
           name: 'Jersey punto cuello polo 100% lino',

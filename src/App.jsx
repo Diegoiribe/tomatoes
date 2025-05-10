@@ -8,20 +8,11 @@ import Carrito from './pages/Carrito'
 import Register from './pages/Register'
 import HomeAdmin from './pages/HomeAdmin'
 import Landing from './pages/Landing'
-import axiosInstance from './api/axiosConfig'
 import { useEffect, useState } from 'react'
 import HomePhone from './pages/HomePhone'
 import Login from './pages/Login'
 
 function App() {
-  axiosInstance
-    .get('/store')
-    .then((response) => {
-      console.log('✅ Data recibida:', response.data)
-    })
-    .catch((error) => {
-      console.error('❌ Error al consumir la API:', error)
-    })
   const [productoCarrito, setProductoCarrito] = useState([])
 
   // 🔹 Cargar productos del carrito desde localStorage al iniciar la app
@@ -133,6 +124,7 @@ function App() {
                 />
               }
             />
+            <Route path="/admin" element={<HomeAdmin />} />
           </>
         ) : (
           <>
@@ -140,7 +132,6 @@ function App() {
             <Route path="/shopphone" element={<HomePhone />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<HomeAdmin />} />
           </>
         )}
       </Routes>

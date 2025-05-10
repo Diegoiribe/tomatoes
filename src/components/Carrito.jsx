@@ -81,7 +81,7 @@ const Carrito = ({ isOpen, setIsOpen, eliminarDelCarrito }) => {
                 <div
                   className="h-20 mr-3 rounded-md"
                   style={{
-                    backgroundImage: `url(${item.photoPrimary})`,
+                    backgroundImage: `url(${item.photo})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'top',
                     width: '20%'
@@ -89,7 +89,7 @@ const Carrito = ({ isOpen, setIsOpen, eliminarDelCarrito }) => {
                 ></div>
                 <div className="w-full">
                   <div className="flex justify-between w-full">
-                    <p className="text-xs uppercase">{item.name}</p>
+                    <p className="text-xs uppercase truncate">{item.name}</p>
                     <p className="text-xs uppercase">
                       MXN{' '}
                       {item.price.toLocaleString('en-US', {

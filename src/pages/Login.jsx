@@ -5,11 +5,7 @@ const Login = () => {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
-    name: '',
-    country: '',
-    state: '',
-    city: ''
+    password: ''
   })
 
   const handleChange = (e) => {
@@ -59,34 +55,6 @@ const Login = () => {
                 className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
                 placeholder="Email"
               />
-              <button
-                className="py-3 text-sm font-medium text-center text-white bg-black border cursor-pointer rounded-xl"
-                onClick={() => setStep(2)}
-                type="button"
-              >
-                Continue
-              </button>
-              <Link to={'/'} className="text-sm text-center cursor-pointer">
-                Go back
-              </Link>
-            </form>
-          )}
-
-          {/* Step 2 */}
-          {step === 2 && (
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex flex-col gap-3 mt-5"
-            >
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300 bg-neutral-200"
-                placeholder="Email"
-              />
               <input
                 type="password"
                 name="password"
@@ -96,18 +64,6 @@ const Login = () => {
                 className="w-full p-3 text-sm border rounded-xl font-extralight focus:outline-none border-neutral-300"
                 placeholder="Password"
               />
-              <div className="flex flex-col gap-2 p-3 border rounded-sm border-neutral-300 ">
-                <p className="text-sm text-neutral-500">
-                  Your password must contain:
-                </p>
-                <div className="ml-5">
-                  <li className="text-sm text-neutral-500">
-                    <p className="text-sm text-neutral-500">
-                      At least 12 characters
-                    </p>
-                  </li>
-                </div>
-              </div>
               <button
                 className="py-3 text-sm font-medium text-center text-white bg-black border cursor-pointer rounded-xl"
                 onClick={() => setStep(3)}
@@ -115,12 +71,12 @@ const Login = () => {
               >
                 Continue
               </button>
-              <div
+              <Link
+                to={'/register'}
                 className="text-sm text-center cursor-pointer"
-                onClick={() => setStep(1)}
               >
-                Go back
-              </div>
+                Register
+              </Link>
             </form>
           )}
         </div>

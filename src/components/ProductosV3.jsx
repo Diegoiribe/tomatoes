@@ -11,7 +11,7 @@ const ProductosV3 = ({
             <div
               className="rounded-2xl h-[60vh]"
               style={{
-                backgroundImage: `url(${item.photoModel})`,
+                backgroundImage: `url(${item.photo})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'top',
                 width: '100%'
@@ -40,9 +40,11 @@ const ProductosV3 = ({
               </div>
             </div>
             <div className="flex flex-col px-2 py-2 ">
-              <div className="flex justify-between">
-                <p className="text-xs uppercase font-extralight">{item.name}</p>
-                <p className="text-xs uppercase font-extralight">
+              <div className="flex justify-between gap-5">
+                <p className="text-xs uppercase truncate font-extralight">
+                  {item.name}
+                </p>
+                <p className="text-xs uppercase truncate text-end font-extralight min-w-20">
                   {item.size} | {item.color}
                 </p>
               </div>

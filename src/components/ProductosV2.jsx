@@ -18,6 +18,18 @@ const ProductosV2 = ({ width, agregarAlCarrito }) => {
     fetchData()
   }, [])
 
+  const handleCarrito = (producto) => {
+    const productoConDetalles = {
+      photo: producto.variants[0].photoModel,
+      name: producto.name,
+      price: producto.price,
+      id: producto.id,
+      count: 1
+    }
+
+    agregarAlCarrito(productoConDetalles)
+  }
+
   return (
     <div className="flex flex-wrap w-full gap-3 py-5 mb-20 sm:justify-around md:justify-center">
       {Tienda.map((item) => (
@@ -32,7 +44,7 @@ const ProductosV2 = ({ width, agregarAlCarrito }) => {
           <div
             className="rounded-2xl h-[17rem]"
             style={{
-              backgroundImage: `url(${item.photoPrimary})`, // Corregido: usas item.url aquí
+              backgroundImage: `url(${item.variants[0].photoModel})`, // Corregido: usas item.url aquí
               backgroundSize: 'cover',
               backgroundPosition: 'top',
               width: '100%' // Corregido: usas item.w aquí
@@ -43,7 +55,7 @@ const ProductosV2 = ({ width, agregarAlCarrito }) => {
                 onClick={(e) => {
                   e.preventDefault() // Evita que actúe como un enlace
                   e.stopPropagation() // Evita que el evento se propague al contenedor padre
-                  agregarAlCarrito(item) // Agrega el producto al carrito correctamente
+                  handleCarrito(item) // Agrega el producto al carrito correctamente
                 }}
                 className="flex items-center justify-center w-8 h-8 rounded-full shadow-2xl cursor-pointer sm:bg-black/10 md:bg-white"
               >

@@ -38,6 +38,18 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
     return coincideCategoria && coincideBusqueda
   })
 
+  const handleCarrito = (producto) => {
+    const productoConDetalles = {
+      photo: producto.variants[0].photoModel,
+      name: producto.name,
+      price: producto.price,
+      id: producto.id,
+      count: 1
+    }
+
+    agregarAlCarrito(productoConDetalles)
+  }
+
   return (
     <div className="flex flex-wrap ∫ justify-center mb-23 w-full gap-23 p-5 pt-10 min-h-[90vh]">
       {productosFiltrados.length > 0 ? (
@@ -50,7 +62,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
             <div
               className="rounded-2xl h-[24rem] cursor-pointer"
               style={{
-                backgroundImage: `url(${item.photoModel})`,
+                backgroundImage: `url(${item.variants[0].photoModel})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'top',
                 width: '100%'
@@ -62,7 +74,7 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
                   onClick={(e) => {
                     e.preventDefault() // Evita que actúe como un enlace
                     e.stopPropagation() // Evita que el evento se propague al contenedor padre
-                    agregarAlCarrito(item) // Agrega el producto al carrito correctamente
+                    handleCarrito(item) // Agrega el producto al carrito correctamente
                   }}
                 >
                   <svg
@@ -83,14 +95,20 @@ const Productos = ({ filtros, agregarAlCarrito }) => {
               </div>
             </div>
             <p className="px-3 pt-3 text-xs uppercase">{item.name}</p>
-            <div className="flex items-center justify-between px-2 py-1">
+            <div className="flex items-center justify-between gap-2 px-2 py-1">
               <div className="flex gap-2">
-                {item.variants.map((item, index) => (
+                {[
+                  ...new Set(
+                    item.variants.flatMap((variant) =>
+                      Object.keys(variant.sizes)
+                    )
+                  )
+                ].map((size, index) => (
                   <div
-                    key={`${item.id}-${index}`}
+                    key={`${size}-${index}`}
                     className="inline-flex items-center justify-center w-7 h-7 border-2 rounded-full border-[#F9F9F9] cursor-pointer hover:bg-black font-medium text-[#2f2f2f] text-[11px] hover:text-white"
                   >
-                    <p className="">{item.size}</p>
+                    <p>{size}</p>
                   </div>
                 ))}
               </div>

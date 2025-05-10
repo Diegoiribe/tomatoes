@@ -5,7 +5,7 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <div
-      className="md:flex md:flex-row sm:flex-col w-full md:h-screen md:px-20 sm:px-5 md:py-40 sm:py-20  black-section"
+      className="w-full md:flex md:flex-row sm:flex-col md:h-screen md:px-20 sm:px-5 md:py-40 sm:py-20 black-section"
       style={{
         backgroundColor: bg,
         color: color
@@ -15,7 +15,7 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
         <p className="overflow-hidden font-bold text-7xl">ZAYCA</p>
       </div>
       <div className="flex flex-col md:w-2/3 sm:w-full gap-22">
-        <div className="flex md:flex-row  sm:flex-col sm:gap-5 sm:mt-5 ">
+        <div className="flex md:flex-row sm:flex-col sm:gap-5 sm:mt-5 ">
           <div className="md:min-w-[500px]  flex flex-col gap-6">
             <p className="text-sm">NEWSLETTER</p>
             <p className="text-xs md:max-w-[400px]">
@@ -37,7 +37,7 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
           </div>
           <div className="flex flex-col gap-6">
             <p className="text-sm">SOCIAL</p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 md:flex-col xl:flex-row">
               <p className="text-sm">Instagram</p>
               <p className="text-sm">Tiktok</p>
               <p className="text-sm">X</p>
@@ -45,9 +45,11 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-wrap md:flex-nowrap sm:gap-10 md:gap-0 justify-between">
+        <div className="flex justify-between sm:flex-wrap md:flex-nowrap sm:gap-10 md:gap-0">
           <div className="flex flex-col sm:gap-3 md:gap-5">
-            <p className="mb-2 text-sm sm:font-medium md:font-normal uppercase">Ayuda</p>
+            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">
+              Ayuda
+            </p>
             <p className="text-xs cursor-pointer hover:text-neutral-500">
               WhatsApp
             </p>
@@ -71,7 +73,9 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
             </p>
           </div>
           <div className="flex flex-col sm:gap-3 md:gap-5">
-            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">Servicios</p>
+            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">
+              Servicios
+            </p>
             <p className="text-xs cursor-pointer hover:text-neutral-500">
               Personal tailoring
             </p>
@@ -83,7 +87,9 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
             </p>
           </div>
           <div className="flex flex-col sm:gap-3 md:gap-5">
-            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">Legal</p>
+            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">
+              Legal
+            </p>
             <p className="text-xs cursor-pointer hover:text-neutral-500">
               Condiciones de compra
             </p>
@@ -104,7 +110,9 @@ const Footer = ({ color = 'white', bg = 'black' }) => {
             </p>
           </div>
           <div className="flex flex-col sm:gap-3 md:gap-5">
-            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">Empresa</p>
+            <p className="mb-2 text-sm uppercase sm:font-medium md:font-normal">
+              Empresa
+            </p>
             <p className="text-xs cursor-pointer hover:text-neutral-500">
               Descargue nuestra app
             </p>

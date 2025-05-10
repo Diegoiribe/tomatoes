@@ -66,7 +66,7 @@ const Carrito = ({
         productoCarrito={productoCarrito}
         eliminarDelCarrito={eliminarDelCarrito}
       />
-      <div className="fixed bottom-0 left-0 flex items-start justify-end w-full gap-10 pt-6 pb-4 bg-black shadow-2xl sm:px-10 md:px-25">
+      <div className="fixed bottom-0 left-0 right-0 flex items-start justify-end gap-10 pt-6 pb-4 bg-black shadow-2xl sm:px-10 md:px-25">
         <p className="text-sm text-white uppercase font-extralight">Total</p>
         <div>
           <p className="text-xs text-white uppercase font-extralight">

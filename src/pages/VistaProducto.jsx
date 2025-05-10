@@ -3,7 +3,6 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ProductosV2 from '../components/ProductosV2'
 import { useState, useEffect, useRef, useMemo } from 'react'
-
 import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { getData } from '../api/http'
@@ -15,6 +14,7 @@ const VistaProducto = ({
 }) => {
   const [isProducts, setIsProducts] = useState([])
   const [isOpen, setIsOpen] = useState(false)
+  const [variantSeleccionada, setVariantSeleccionada] = useState(null)
   const [tallaSeleccionada, setTallaSeleccionada] = useState(null)
   const [colorSeleccionado, setColorSeleccionado] = useState(null)
   const [width, setWidth] = useState('')
@@ -55,6 +55,13 @@ const VistaProducto = ({
   // 🔹 Obtener producto específico
   const producto = isProducts.filter((p) => p.id == id)
 
+  useEffect(() => {
+    if (producto[0]?.variants?.length && variantSeleccionada === null) {
+      setVariantSeleccionada(producto[0].variants[0])
+      setColorSeleccionado(producto[0].variants[0].color)
+    }
+  }, [producto])
+
   // 🔹 Colores únicos (memoizado)
   const coloresUnicos = useMemo(() => {
     if (!producto[0]?.variants) return []
@@ -71,9 +78,14 @@ const VistaProducto = ({
     }
 
     const productoConDetalles = {
-      ...producto[0],
+      id: variantSeleccionada.id,
+      name: producto[0].name,
+      description: producto[0].description,
+      price: producto[0].price,
+      photo: variantSeleccionada.photoModel,
+      color: variantSeleccionada.color,
       size: tallaSeleccionada,
-      color: colorSeleccionado
+      count: 1
     }
 
     agregarAlCarrito(productoConDetalles)
@@ -133,20 +145,18 @@ const VistaProducto = ({
           ref={galeriaRef}
           className="md:w-1/2 sm:w-full sm:h-[80vh] md:h-full overflow-auto sm:rounded-none md:rounded-br-2xl"
         >
-          {producto.map((item) => (
-            <div key={item.id} className="w-full h-auto">
-              {item.photos.map((photo, index) => (
-                <div
-                  key={`${item.id}-${index}`}
-                  className="w-full sm:h-[90vh] md:h-[110vh]"
-                  style={{
-                    backgroundImage: `url(${photo})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'top'
-                  }}
-                ></div>
-              ))}
-            </div>
+          {variantSeleccionada?.photos?.map((photoUrl, index) => (
+            <div
+              key={index}
+              className="w-full sm:h-[90vh] md:h-[110vh]"
+              style={{
+                backgroundImage: `url(${photoUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'top',
+                backgroundRepeat: 'no-repeat',
+                minHeight: '400px'
+              }}
+            ></div>
           ))}
         </div>
 
@@ -194,38 +204,43 @@ const VistaProducto = ({
                       onClick={() => {
                         setColorSeleccionado(color)
                         setTallaSeleccionada(null) // resetea la talla cuando cambia color
+                        const variante = producto[0]?.variants.find(
+                          (v) =>
+                            v.color.toLowerCase().trim() ===
+                            color.toLowerCase().trim()
+                        )
+                        console.log('🔁 Nueva variante encontrada:', variante)
+                        setVariantSeleccionada(variante)
                       }}
                     ></div>
                   ))}
                 </div>
-                <div className="flex items-center justify-center w-full gap-5">
-                  {producto[0]?.variants.map((variant, index) => {
-                    const esTallaActiva =
-                      !colorSeleccionado || colorSeleccionado === variant.color
-                    const esSeleccionada =
-                      tallaSeleccionada === variant.size &&
-                      colorSeleccionado === variant.color
 
-                    return (
-                      <div
-                        key={index}
-                        className={`
-        w-8 rounded-md text-center py-1
-        ${esSeleccionada ? 'font-medium' : 'font-light'}
-        ${esTallaActiva ? 'cursor-pointer' : 'cursor-not-allowed text-gray-400'}
-        $}
-      `}
-                        onClick={() => {
-                          if (esTallaActiva) {
-                            setTallaSeleccionada(variant.size)
-                            setColorSeleccionado(variant.color) // opcional, puede activarse por talla
-                          }
-                        }}
-                      >
-                        {variant.size}
-                      </div>
-                    )
-                  })}
+                <div className="flex items-center justify-center w-full gap-5">
+                  {variantSeleccionada &&
+                    Object.entries(variantSeleccionada?.sizes).map(
+                      ([size], index) => {
+                        const esSeleccionada = tallaSeleccionada === size
+
+                        return (
+                          <div
+                            key={index}
+                            className={`
+                                        w-8 rounded-md text-center py-1
+                                        ${
+                                          esSeleccionada
+                                            ? 'font-medium'
+                                            : 'font-light'
+                                        }
+                                        cursor-pointer
+                                      `}
+                            onClick={() => setTallaSeleccionada(size)}
+                          >
+                            {size}
+                          </div>
+                        )
+                      }
+                    )}
                 </div>
                 <p className="text-xs font-medium text-center text-neutral-500">
                   La modelo lleva la talla M y mide 178 cm.
